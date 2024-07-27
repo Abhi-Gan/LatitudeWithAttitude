@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-
+from flask_cors import CORS  # Import CORS
 # openai stuff
 from openai import OpenAI
 import os
@@ -32,7 +32,7 @@ USE_MOCK_DATA = True or (OPENAI_API_KEY is None)
 OPENAI_MODEL = "gpt-3.5-turbo-0125"
 
 app = Flask(__name__)
-
+CORS(app)
 def get_llm_response(prompt, as_json=False):
     chat_response = client.chat.completions.create(
         model=OPENAI_MODEL,
@@ -158,7 +158,7 @@ def historyQuery():
 
     # check if I have the openAI api
     if USE_MOCK_DATA:
-        with open('example_response.json') as file:
+        with open('example_response1.json') as file:
             mock_data = json.load(file)
             return mock_data
     else:

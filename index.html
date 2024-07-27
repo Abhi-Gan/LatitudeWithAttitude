@@ -180,50 +180,47 @@
           document
             .getElementById("submitButton")
             .addEventListener("click", () => {
-              // get query
+              // Get query
               const userInput = document.getElementById("userInput").value;
 
-              // make post request to the LLM
-              // Define the URL of your Flask backend endpoint
-              const url = 'http://127.0.0.1:5000/historyQuery';
+              const url = "http://127.0.0.1:5000/historyQuery";
+              const data = { query: userInput };
 
-              // Define the data you want to send in the request body
-              const data = {
-                  query: userInput
-              };
-
-              // Make the POST request using fetch
               fetch(url, {
-                  method: 'POST', // Specify the request method
-                  headers: {
-                      'Content-Type': 'application/json' // Set the content type to JSON
-                  },
-                  body: JSON.stringify(data) // Convert the data to a JSON string
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
               })
-              .then(response => response.json()) // Parse the JSON response
-              .then(data => {
-                  console.log('Success:', data); // Handle the response data
-                  // display paragrtaph text
-                  infoPanel = document.getElementById("imagePanel");
+                .then((response) => {
+                  if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                  }
+                  return response.json();
+                })
+                .then((data) => {
+                  console.log("Success:", data);
+                  // Display paragraph text
+                  const infoPanel = document.getElementById("imagePanel");
                   infoPanel.innerText = data["paragraph_response"];
 
-                  eventsList = data["relev_events_list"];
+                  const eventsList = data["relev_events_list"];
                   console.log(eventsList);
 
-              })
-              .catch((error) => {
-                  console.error('Error:', error); // Handle any errors
-              });
+                  // Optionally, you can add points for each event in the eventsList
+                  eventsList.forEach((event) => {
+                    const { x, y } = event;
+                    addPoint(x, y);
+                  });
+                })
+                .catch((error) => {
+                  console.error("Error:", error);
+                });
 
-              if (!isNaN(latitude) && !isNaN(longitude)) {
-                addPoint(longitude, latitude);
-                document.getElementById("queryText").innerText = `${userInput}`;
-                document.getElementById("userInput").value = "";
-              } else {
-                alert(
-                  "Invalid input. Please enter valid latitude and longitude values."
-                );
-              }
+              // Clear the input box and update the query text
+              document.getElementById("queryText").innerText = `${userInput}`;
+              document.getElementById("userInput").value = "";
             });
 
           // Event listener for the clear button
@@ -231,6 +228,7 @@
             .getElementById("clearButton")
             .addEventListener("click", () => {
               graphicsLayer.removeAll();
+              document.getElementById("queryText").innerText = "";
             });
 
           view.on("pointer-move", (event) => {
