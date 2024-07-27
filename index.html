@@ -33,35 +33,74 @@
         height: 100%;
         width: 100%;
         display: flex;
+        flex-direction: column;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+      }
+
+      #topBar {
+        width: 100%;
+        height: 60px;
+        background-color: #333;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      #topBar img {
+        height: 40px;
+      }
+
+      #mainContent {
+        display: flex;
         flex-direction: row;
+        flex: 1;
       }
 
       #leftPanel {
         width: 20%;
         display: flex;
         flex-direction: column;
-        padding: 6px;
+        padding: 10px;
         background-color: #f4fff3;
         overflow-y: auto;
+        border-right: 1px solid #ccc;
       }
 
       #infoPanel {
         flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
       }
 
       #inputPanel {
-        width: 100%;
-        padding: 10px;
+        width: 90%;
+        padding: 15px;
         background-color: #39ca51;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
       }
 
       #inputPanel textarea {
-        width: 90%;
-        height: 100px;
-        padding: 2px;
+        width: 100%;
+        height: 80px;
+        padding: 10px;
         font-size: 14px;
         box-sizing: border-box;
         resize: vertical;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      #queryText {
+        background-color: #e0f7fa;
+        padding: 10px;
+        border-radius: 4px;
+        margin-top: 10px;
       }
 
       #viewDiv {
@@ -85,6 +124,7 @@
         max-width: 100%;
         max-height: 100%;
         margin-bottom: 10px; /* Space between image and text */
+        border-radius: 8px;
       }
 
       #placeholderTop,
@@ -108,6 +148,8 @@
         "esri/Graphic",
         "esri/geometry/Point",
         "esri/PopupTemplate",
+        "esri/Basemap",
+        "esri/layers/VectorTileLayer",
       ], (
         Map,
         GraphicsLayer,
@@ -115,7 +157,9 @@
         BasemapToggle,
         Graphic,
         Point,
-        PopupTemplate
+        PopupTemplate,
+        Basemap,
+        VectorTileLayer
       ) => {
         const graphicsLayer = new GraphicsLayer();
 
@@ -132,9 +176,20 @@
         });
 
         view.when(() => {
+          // Create a new VectorTileLayer for the custom basemap
+          const customBasemapLayer = new VectorTileLayer({
+            url: "https://basemaps.arcgis.com/arcgis/rest/services/World_Basemap_v2/VectorTileServer",
+          });
+
+          // Create a new Basemap using the custom VectorTileLayer
+          const customBasemap = new Basemap({
+            baseLayers: [customBasemapLayer],
+          });
+
+          // Create the BasemapToggle widget with the custom basemap
           const basemapToggle = new BasemapToggle({
             view: view,
-            nextBasemap: "topo-vector",
+            nextBasemap: customBasemap,
           });
 
           view.ui.add(basemapToggle, "top-left");
@@ -173,6 +228,10 @@
             view.center = point;
             view.zoom = 13;
           }
+          function showWorldExtent() {
+            view.center = [0, 0];
+            view.zoom = 2;
+          }
 
           // Initial point for Midway Island
           addPoint(-177.366, 28.2, "Midway Island");
@@ -206,13 +265,13 @@
                   infoPanel.innerText = data["paragraph_response"];
 
                   const eventsList = data["relev_events_list"];
-                  console.log(eventsList);
 
                   // Add points for each event in the eventsList
                   eventsList.forEach((event) => {
                     const { x, y, "tag line": tagLine } = event;
                     addPoint(x, y, tagLine);
                   });
+                  showWorldExtent();
                 })
                 .catch((error) => {
                   console.error("Error:", error);
@@ -255,7 +314,10 @@
   </head>
 
   <body>
-    <div id="container">
+    <div id="topBar">
+      <img src="Wordmap-Logo-02.png" alt="Logo" />
+    </div>
+    <div id="mainContent">
       <div id="leftPanel">
         <div id="infoPanel">
           <div id="inputPanel">
@@ -270,10 +332,8 @@
             <calcite-button id="clearButton" appearance="outline" color="red"
               >Clear All Points</calcite-button
             >
+            <p id="queryText"></p>
           </div>
-
-          <p><strong>Query: </strong></p>
-          <p id="queryText"></p>
         </div>
       </div>
 
@@ -281,14 +341,6 @@
 
       <div id="imagePanel">
         <div id="placeholderTop">
-          <p>sadasdasdas</p>
-        </div>
-        <img
-          src="https://i0.wp.com/port2flavors.com/wp-content/uploads/2022/07/placeholder-614.png?fit=1200%2C800&ssl=1"
-          alt="Placeholder Image"
-        />
-        <div id="placeholderBottom">
-          <p>adasdasd</p>
           <p>
             The Battle of Midway, fought from June 4-7, 1942, was a pivotal
             naval engagement during World War II between the United States and
@@ -296,8 +348,28 @@
             Harbor, Midway marked a crucial turning point in the Pacific
             Theater. The American forces, under Admiral Chester W. Nimitz,
             intercepted and decisively defeated a Japanese fleet aiming to
-            occupy Midway Atoll. Through skillful tactics and
+            occupy Midway Atoll.
           </p>
+        </div>
+        <img
+          src="https://i.insider.com/60ba229893c6fa00195e51ee?width=1200&format=jpeg"
+          alt="Placeholder Image"
+        />
+        <div id="placeholderBottom">
+          <p>
+            The success of the Battle of Midway was not solely due to the
+            bravery and skill of the American forces but also to the critical
+            role played by intelligence and codebreaking. The ability to
+            intercept and decode Japanese communications provided the Americans
+            with a strategic advantage that proved to be a turning point in the
+            Pacific War. This victory demonstrated the importance of
+            intelligence in modern warfare and set the stage for further Allied
+            successes in the Pacific Theater.
+          </p>
+          <img
+            src="https://www.historyhit.com/app/uploads/2020/07/US-forces-battle-of-midway-1.jpg"
+            alt="Placeholder Image"
+          />
         </div>
       </div>
     </div>
