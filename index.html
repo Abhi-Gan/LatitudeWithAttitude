@@ -13,11 +13,18 @@
       href="https://js.arcgis.com/4.30/esri/themes/light/main.css"
     />
     <link
-    rel="stylesheet"
-    href="https://unpkg.com/@esri/calcite-components@1.0.0-beta.82/dist/calcite/calcite.css"
+      rel="stylesheet"
+      href="https://unpkg.com/@esri/calcite-components@1.0.0-beta.82/dist/calcite/calcite.css"
     />
-
     <script src="https://js.arcgis.com/4.30/"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/@esri/calcite-components@1.0.0-beta.82/dist/calcite/calcite.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/@esri/calcite-components@1.0.0-beta.82/dist/calcite/calcite.js"
+    ></script>
 
     <style>
       html,
@@ -35,17 +42,17 @@
         flex-direction: column;
         padding: 6px;
         background-color: #f4fff3;
-        overflow-y: auto; 
+        overflow-y: auto; /* Enable vertical scroll if content exceeds */
       }
 
       #infoPanel {
-        flex: 1;
+        flex: 1; /* Take remaining vertical space */
       }
 
       #inputPanel {
         width: 100%;
         padding: 10px;
-        background-color: #88d840;
+        background-color: #39ca51;
       }
 
       #inputPanel textarea {
@@ -59,7 +66,7 @@
 
       #viewDiv {
         flex: 2;
-        background-color: #f4fff3;
+        background-color: #f0f0f0;
       }
 
       #imagePanel {
@@ -100,8 +107,16 @@
         "esri/views/MapView",
         "esri/widgets/BasemapToggle",
         "esri/Graphic",
-        "esri/geometry/Point"
-      ], (Sketch, Map, GraphicsLayer, MapView, BasemapToggle, Graphic, Point) => {
+        "esri/geometry/Point",
+      ], (
+        Sketch,
+        Map,
+        GraphicsLayer,
+        MapView,
+        BasemapToggle,
+        Graphic,
+        Point
+      ) => {
         const graphicsLayer = new GraphicsLayer();
 
         const map = new Map({
@@ -113,125 +128,157 @@
           container: "viewDiv",
           map: map,
           zoom: 13,
-          center: [-177.366, 28.2], 
+          center: [-177.366, 28.2], // Initial coordinates for Midway Island
         });
 
         view.when(() => {
+          const sketch = new Sketch({
+            layer: graphicsLayer,
+            view: view,
+            // graphic will be selected as soon as it is created
+            creationMode: "update",
+          });
+
+          view.ui.add(sketch, "top-right");
 
           const basemapToggle = new BasemapToggle({
             view: view,
-            nextBasemap: "satellite",          });
+            nextBasemap: "satellite",
+          });
 
-view.ui.add(basemapToggle, "top-left");
+          view.ui.add(basemapToggle, "top-left");
 
-// Function to add a point to the map
-function addPoint(longitude, latitude) {
-  graphicsLayer.removeAll();
+          // Function to add a point to the map
+          function addPoint(longitude, latitude) {
+            const point = new Point({
+              longitude: longitude,
+              latitude: latitude,
+            });
 
-  const point = new Point({
-    longitude: longitude,
-    latitude: latitude,
-  });
+            const markerSymbol = {
+              type: "simple-marker",
+              color: [226, 119, 40], // Orange
+              outline: {
+                color: [255, 255, 255], // White
+                width: 2,
+              },
+            };
 
-  const markerSymbol = {
-    type: "simple-marker",
-    color: [226, 119, 40], // Orange
-    outline: {
-      color: [255, 255, 255], // White
-      width: 2,
-    },
-  };
+            const pointGraphic = new Graphic({
+              geometry: point,
+              symbol: markerSymbol,
+            });
 
-  const pointGraphic = new Graphic({
-    geometry: point,
-    symbol: markerSymbol,
-  });
+            graphicsLayer.add(pointGraphic);
+            view.center = point;
+            view.zoom = 13;
+          }
 
-  graphicsLayer.add(pointGraphic);
-  view.center = point;
-  view.zoom = 13;
-}
+          // Initial point for Midway Island
+          addPoint(-177.366, 28.2);
 
-addPoint(-177.366, 28.2);
+          // Event listener for the input box
+          document
+            .getElementById("submitButton")
+            .addEventListener("click", () => {
+              const userInput = document.getElementById("userInput").value;
+              const [latitude, longitude] = userInput.split(",").map(Number);
 
-// Event listener for the input box
-document.getElementById("submitButton").addEventListener("click", () => {
-  const userInput = document.getElementById("userInput").value;
-  const [latitude, longitude] = userInput.split(",").map(Number);
+              if (!isNaN(latitude) && !isNaN(longitude)) {
+                addPoint(longitude, latitude);
+              } else {
+                alert(
+                  "Invalid input. Please enter valid latitude and longitude values."
+                );
+              }
+            });
 
-  if (!isNaN(latitude) && !isNaN(longitude)) {
-    addPoint(longitude, latitude);
-  } else {
-    alert("Invalid input. Please enter valid latitude and longitude values.");
-  }
-});
-});
-});
-</script>
-</head>
+          // Event listener for the clear button
+          document
+            .getElementById("clearButton")
+            .addEventListener("click", () => {
+              graphicsLayer.removeAll();
+            });
+        });
+      });
+    </script>
+  </head>
 
-<body>
-<div id="container">
-<div id="leftPanel">
-<div id="infoPanel">
-<div id="inputPanel">
-  <textarea
-    id="userInput"
-    placeholder="Enter latitude,longitude: "
-    rows="5"
-  ></textarea>
-  <button id="submitButton">Submit</button>
-</div>
+  <body>
+    <div id="container">
+      <div id="leftPanel">
+        <div id="infoPanel">
+          <div id="inputPanel">
+            <textarea
+              id="userInput"
+              placeholder="Enter latitude,longitude: "
+              rows="5"
+            ></textarea>
+            <calcite-button id="submitButton" appearance="solid" color="blue"
+              >Submit</calcite-button
+            >
+            <calcite-button id="clearButton" appearance="outline" color="red"
+              >Clear All Points</calcite-button
+            >
+          </div>
 
-<p><strong>Query :</strong></p>
-<p>
-  The Battle of Midway, fought from June 4-7, 1942, was a pivotal
-  naval engagement during World War II between the United States and
-  Imperial Japan. Taking place six months after the attack on Pearl
-  Harbor, Midway marked a crucial turning point in the Pacific
-  Theater. The American forces, under Admiral Chester W. Nimitz,
-  intercepted and decisively defeated a Japanese fleet aiming to
+          <p><strong>Query :</strong></p>
+          <p>
+            The Battle of Midway, fought from June 4-7, 1942, was a pivotal
+            naval engagement during World War II between the United States and
+            Imperial Japan. Taking place six months after the attack on Pearl
+            Harbor, Midway marked a crucial turning point in the Pacific
+            Theater. The American forces, under Admiral Chester W. Nimitz,
+            intercepted and decisively defeated a Japanese fleet aiming to
+            occupy Midway Atoll. Through skillful tactics and intelligence
+            operations, including the use of intercepted Japanese
+            communications, the U.S. Navy inflicted significant losses on Japan,
+            sinking four aircraft carriers while losing only one of their own.
+            The battle not only halted Japan's expansion but also shifted the
+            strategic initiative in favor of the Allies, demonstrating the
+            importance of naval air power and intelligence in determining the
+            course of the war in the Pacific.
+          </p>
+        </div>
+      </div>
 
-</p>
-</div>
-</div>
+      <div id="viewDiv"></div>
 
-<div id="viewDiv"></div>
-
-<div id="imagePanel">
-<div id="placeholderTop">
-<p>
-  The Battle of Midway, fought from June 4-7, 1942, was a pivotal
-  naval engagement during World War II between the United States and
-  Imperial Japan. Taking place six months after the attack on Pearl
-  Harbor, Midway marked a crucial turning point in the Pacific
-  Theater. The American forces, under Admiral Chester W. Nimitz,
-</p>
-</div>
-<img
-src="https://i0.wp.com/port2flavors.com/wp-content/uploads/2022/07/placeholder-614.png?fit=1200%2C800&ssl=1"
-alt="Placeholder Image"
-/>
-<div id="placeholderBottom">
-<p>
-  The Battle of Midway, fought from June 4-7, 1942, was a pivotal
-  naval engagement during World War II between the United States and
-  Imperial Japan. Taking place six months after the attack on Pearl
-  Harbor, Midway marked a crucial turning point in the Pacific
-  Theater. The American forces, under Admiral Chester W. Nimitz,
-  intercepted and decisively defeated a Japanese fleet aiming to
-  occupy Midway Atoll. Through skillful tactics and intelligence
-</p>
-<p>
-  The Battle of Midway, fought from June 4-7, 1942, was a pivotal
-  naval engagement during World War II between the United States and
-  Imperial Japan. Taking place six months after the attack on Pearl
-  Harbor, Midway marked a crucial turning point in the Pacific
-  Theater. The American forces, under Admiral Chester W. Nimitz,
-  intercepted and decisively defeated a Japanese fleet aiming to
-  occupy Midway Atoll. Through skillful tactics and intelligence
-</p>
-</div>
-</div>
-</div>
-</
+      <div id="imagePanel">
+        <div id="placeholderTop">
+          <p>
+            The Battle of Midway, fought from June 4-7, 1942, was a pivotal
+            naval engagement during World War II between the United States and
+            Imperial Japan. Taking place six months after the attack on Pearl
+            Harbor, Midway marked a crucial turning point in the Pacific
+            Theater. The American forces, under Admiral Chester W. Nimitz,
+          </p>
+        </div>
+        <img
+          src="https://i0.wp.com/port2flavors.com/wp-content/uploads/2022/07/placeholder-614.png?fit=1200%2C800&ssl=1"
+          alt="Placeholder Image"
+        />
+        <div id="placeholderBottom">
+          <p>
+            The Battle of Midway, fought from June 4-7, 1942, was a pivotal
+            naval engagement during World War II between the United States and
+            Imperial Japan. Taking place six months after the attack on Pearl
+            Harbor, Midway marked a crucial turning point in the Pacific
+            Theater. The American forces, under Admiral Chester W. Nimitz,
+            intercepted and decisively defeated a Japanese fleet aiming to
+            occupy Midway Atoll. Through skillful tactics and intelligence
+          </p>
+          <p>
+            The Battle of Midway, fought from June 4-7, 1942, was a pivotal
+            naval engagement during World War II between the United States and
+            Imperial Japan. Taking place six months after the attack on Pearl
+            Harbor, Midway marked a crucial turning point in the Pacific
+            Theater. The American forces, under Admiral Chester W. Nimitz,
+            intercepted and decisively defeated a Japanese fleet aiming to
+            occupy Midway Atoll. Through skillful tactics and
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
