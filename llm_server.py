@@ -56,68 +56,7 @@ def get_llm_response(prompt, as_json=False):
             print(f"error parsing LLM response to prompt '{prompt}'!\nResponse:{llm_response_str}\nError:{e}")
 
         return llm_response_json
-
-# gets more detailed info abt this event
-def refine_query(query):
-    refined_query_prompt = \
-f"""Describe events/movements related to the prompt '{query}'. Address causation, continuity and change over time, and impacts from various perspectives.
-
-Then, provide information about relevant historical events.
-Be specific about events and locations. Have a transnational approach and try to make connections to other geographical places/groups.
-
-For each event, provide information in the following format:
-{{
-    "tag line": <brief description of event>,
-    "locations" [list of relevant cities/states/regions/addresses to this event],
-    "start date": <approximate start date of this event in YYYY-MM-DD format>,
-    "end date": <approximate end date of this event in YYYY-MM-DD format>,
-    "query": <search query that can be used to find relevant images *safe for work*> 
-}}
-
-Format your answer like so:
-{{
-    "answer": <answer>,
-    "query": <search query that can be used to find relevant images to your answer *safe for work*>,
-    "events": [relevant events]
-}}
-"""
     
-    return get_llm_response(refined_query_prompt, as_json=True)
-
-
-def expand_query(query):
-    expand_query_prompt = \
-f"""Write 1-3 paragraphs about information related to the query '{query}' to a broader global context of related events/movements in other geographical locations. 
-In your response, do the following:
-    - Have a transnational approach and try to make connections to other geographical places/groups.
-    - Explain the connections to argue a central theme. 
-    - try to discuss related events important to a variety of fields - history, technology, arts, psychology, economics, etc.
-
-Then, provide information about relevant historical events. Establish the connections between these events and the initial query in your paragraphs.
-Be specific about events and locations. 
-
-For each event, provide information in the following json format:
-{{
-    "tag line": <brief description of event>,
-    "locations" [list of specific singular cities/states/regions relevant to this event. (e.g. Vietnam, Hawaii, Laos, the Gulf Coast)],
-    "start date": <approximate start date of this event in YYYY-MM-DD format>,
-    "end date": <approximate end date of this event in YYYY-MM-DD format>,
-    "query": <search query that can be used to find relevant images *safe for work*> 
-}}
-Ensure each entry in your list of locations can be geocoded.
-
-Format your response in json like so:
-{{
-    "answer": <paragraph discussion>,
-    "query": <search query that can be used to find relevant images to your answer *safe for work*>,
-    "events": [relevant events]
-}}
-
-Response:
-"""
-    
-    return get_llm_response(expand_query_prompt, as_json=True)
-
 def discuss_topic(query):
     expand_refine_prompt = \
 f"""Tell me about '{query}'
