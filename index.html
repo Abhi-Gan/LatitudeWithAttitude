@@ -95,7 +95,6 @@
         font-size: 14px;
         box-sizing: border-box;
         resize: vertical;
-        /* border: 2px solid #000000; */
         border-radius: 4px;
       }
 
@@ -104,7 +103,6 @@
         padding: 10px;
         border-radius: 4px;
         margin-top: 10px;
-        /* border: 2px solid #000000; */
       }
 
       #viewDiv {
@@ -144,6 +142,27 @@
         overflow-wrap: break-word; /* Wrap long words */
         max-width: 100%; /* Limit width */
       }
+
+      #queryList {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #f9f9f9;
+        border-radius: 4px;
+        max-height: 200px;
+        overflow-y: auto;
+      }
+
+      #queryList ul {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      #queryList li {
+        margin-bottom: 5px;
+        padding: 5px;
+        background-color: #e0f7fa;
+        border-radius: 4px;
+      }
     </style>
     <script>
       require([
@@ -156,6 +175,7 @@
         "esri/PopupTemplate",
         "esri/Basemap",
         "esri/layers/VectorTileLayer",
+        "esri/geometry/Extent",
       ], (
         Map,
         GraphicsLayer,
@@ -165,9 +185,11 @@
         Point,
         PopupTemplate,
         Basemap,
-        VectorTileLayer
+        VectorTileLayer,
+        Extent
       ) => {
         const graphicsLayer = new GraphicsLayer();
+        const queries = [];
 
         const map = new Map({
           basemap: "satellite",
@@ -177,8 +199,8 @@
         const view = new MapView({
           container: "viewDiv",
           map: map,
-          zoom: 14,
-          center: [-177.366, 28.2],
+          zoom: 3,
+          center: [0, 0], // Center the map on the world
         });
 
         view.when(() => {
@@ -199,6 +221,7 @@
           });
 
           view.ui.add(basemapToggle, "top-left");
+
           const colors = [
             [226, 119, 40], // Orange
             [0, 112, 255], // Blue
@@ -207,6 +230,7 @@
             [255, 255, 0], // Yellow
           ];
           let colorIndex = 0;
+
           function addPoint(longitude, latitude, title) {
             const point = new Point({
               longitude: longitude,
@@ -220,7 +244,7 @@
 
             const markerSymbol = {
               type: "simple-marker",
-              color: colors[colorIndex],
+              color: colors[colorIndex], // Cycle through colors
               outline: {
                 color: [255, 255, 255], // White
                 width: 2,
@@ -241,9 +265,18 @@
             view.center = point;
             view.zoom = 13;
           }
+
           function showWorldExtent() {
             view.center = [0, 0];
             view.zoom = 2;
+          }
+
+          function updateQueryList() {
+            const queryList = document.getElementById("queryList");
+            queryList.innerHTML =
+              "<ul>" +
+              queries.map((query) => `<li>${query}</li>`).join("") +
+              "</ul>";
           }
 
           // Initial point for Midway Island
@@ -254,6 +287,8 @@
             .addEventListener("click", () => {
               // Get query
               const userInput = document.getElementById("userInput").value;
+              queries.push(userInput);
+              updateQueryList();
 
               const url = "http://127.0.0.1:5000/historyQuery";
               const data = { query: userInput };
@@ -278,13 +313,22 @@
                   infoPanel.innerText = data["paragraph_response"];
 
                   const eventsList = data["relev_events_list"];
-                  colorIndex = (colorIndex + 1) % colors.length;
+                  console.log(eventsList);
+
+                  // Clear existing graphics
+                  graphicsLayer.removeAll();
+
                   // Add points for each event in the eventsList
                   eventsList.forEach((event) => {
                     const { x, y, "tag line": tagLine } = event;
                     addPoint(x, y, tagLine);
                   });
+
+                  // Show the entire world extent
                   showWorldExtent();
+
+                  // Cycle to the next color
+                  colorIndex = (colorIndex + 1) % colors.length;
                 })
                 .catch((error) => {
                   console.error("Error:", error);
@@ -301,6 +345,8 @@
             .addEventListener("click", () => {
               graphicsLayer.removeAll();
               document.getElementById("queryText").innerText = "";
+              queries.length = 0; // Clear the queries array
+              updateQueryList(); // Update the query list display
             });
 
           view.on("pointer-move", (event) => {
@@ -346,6 +392,10 @@
               >Clear All Points</calcite-button
             >
             <p id="queryText"></p>
+          </div>
+          <p><strong>Previous Queries:</strong></p>
+          <div id="queryList">
+            <ul></ul>
           </div>
         </div>
       </div>
