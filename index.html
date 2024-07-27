@@ -200,6 +200,25 @@
             .addEventListener("click", () => {
               graphicsLayer.removeAll();
             });
+
+          view.on("pointer-move", (event) => {
+            view.hitTest(event).then((response) => {
+              const results = response.results;
+              if (results.length > 0 && results[0].graphic) {
+                const graphic = results[0].graphic;
+                const latitude = graphic.attributes.latitude;
+                const longitude = graphic.attributes.longitude;
+
+                view.popup.open({
+                  location: graphic.geometry,
+                  title: "Coordinates",
+                  content: `Latitude: ${latitude}<br>Longitude: ${longitude}`,
+                });
+              } else {
+                view.popup.close();
+              }
+            });
+          });
         });
       });
     </script>
