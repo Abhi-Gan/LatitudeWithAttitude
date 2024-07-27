@@ -42,11 +42,11 @@
         flex-direction: column;
         padding: 6px;
         background-color: #f4fff3;
-        overflow-y: auto; /* Enable vertical scroll if content exceeds */
+        overflow-y: auto;
       }
 
       #infoPanel {
-        flex: 1; /* Take remaining vertical space */
+        flex: 1;
       }
 
       #inputPanel {
@@ -76,8 +76,8 @@
         align-items: center;
         flex: 1;
         padding: 20px;
-        overflow-y: auto; /* Enable vertical scrolling */
-        box-sizing: border-box; /* Include padding in width calculation */
+        overflow-y: auto;
+        box-sizing: border-box;
         background-color: #f4fff3;
       }
 
@@ -107,7 +107,16 @@
         "esri/widgets/BasemapToggle",
         "esri/Graphic",
         "esri/geometry/Point",
-      ], (Map, GraphicsLayer, MapView, BasemapToggle, Graphic, Point) => {
+        "esri/PopupTemplate",
+      ], (
+        Map,
+        GraphicsLayer,
+        MapView,
+        BasemapToggle,
+        Graphic,
+        Point,
+        PopupTemplate
+      ) => {
         const graphicsLayer = new GraphicsLayer();
 
         const map = new Map({
@@ -136,6 +145,11 @@
               latitude: latitude,
             });
 
+            const popupTemplate = new PopupTemplate({
+              title: "Coordinates",
+              content: `Latitude: {latitude}<br>Longitude: {longitude}`,
+            });
+
             const markerSymbol = {
               type: "simple-marker",
               color: [226, 119, 40], // Orange
@@ -148,6 +162,11 @@
             const pointGraphic = new Graphic({
               geometry: point,
               symbol: markerSymbol,
+              attributes: {
+                latitude: latitude,
+                longitude: longitude,
+              },
+              popupTemplate: popupTemplate,
             });
 
             graphicsLayer.add(pointGraphic);
@@ -213,28 +232,14 @@
 
       <div id="imagePanel">
         <div id="placeholderTop">
-          <p>
-            The Battle of Midway, fought from June 4-7, 1942, was a pivotal
-            naval engagement during World War II between the United States and
-            Imperial Japan. Taking place six months after the attack on Pearl
-            Harbor, Midway marked a crucial turning point in the Pacific
-            Theater. The American forces, under Admiral Chester W. Nimitz,
-          </p>
+          <p>sadasdasdas</p>
         </div>
         <img
           src="https://i0.wp.com/port2flavors.com/wp-content/uploads/2022/07/placeholder-614.png?fit=1200%2C800&ssl=1"
           alt="Placeholder Image"
         />
         <div id="placeholderBottom">
-          <p>
-            The Battle of Midway, fought from June 4-7, 1942, was a pivotal
-            naval engagement during World War II between the United States and
-            Imperial Japan. Taking place six months after the attack on Pearl
-            Harbor, Midway marked a crucial turning point in the Pacific
-            Theater. The American forces, under Admiral Chester W. Nimitz,
-            intercepted and decisively defeated a Japanese fleet aiming to
-            occupy Midway Atoll. Through skillful tactics and intelligence
-          </p>
+          <p>adasdasd</p>
           <p>
             The Battle of Midway, fought from June 4-7, 1942, was a pivotal
             naval engagement during World War II between the United States and
