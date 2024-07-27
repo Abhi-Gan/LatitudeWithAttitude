@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <title>Dynamic Location Input | ArcGIS Maps SDK for JavaScript</title>
+
+    <link
+      rel="stylesheet"
+      href="https://js.arcgis.com/4.30/esri/themes/light/main.css"
+    />
+    <link
+    rel="stylesheet"
+    href="https://unpkg.com/@esri/calcite-components@1.0.0-beta.82/dist/calcite/calcite.css"
+    />
+
+    <script src="https://js.arcgis.com/4.30/"></script>
+
+    <style>
+      html,
+      body,
+      #container {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+      }
+
+      #leftPanel {
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        padding: 6px;
+        background-color: #f4fff3;
+        overflow-y: auto; 
+      }
+
+      #infoPanel {
+        flex: 1;
+      }
+
+      #inputPanel {
+        width: 100%;
+        padding: 10px;
+        background-color: #88d840;
+      }
+
+      #inputPanel textarea {
+        width: 90%;
+        height: 100px;
+        padding: 2px;
+        font-size: 14px;
+        box-sizing: border-box;
+        resize: vertical;
+      }
+
+      #viewDiv {
+        flex: 2;
+        background-color: #f4fff3;
+      }
+
+      #imagePanel {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex: 1;
+        padding: 20px;
+        overflow-y: auto; /* Enable vertical scrolling */
+        box-sizing: border-box; /* Include padding in width calculation */
+        background-color: #f4fff3;
+      }
+
+      #imagePanel img {
+        max-width: 100%;
+        max-height: 100%;
+        margin-bottom: 10px; /* Space between image and text */
+      }
+
+      #placeholderTop,
+      #placeholderBottom {
+        margin-top: 10px; /* Adjust as needed */
+        text-align: center;
+      }
+
+      #placeholderTop p,
+      #placeholderBottom p {
+        overflow-wrap: break-word; /* Wrap long words */
+        max-width: 100%; /* Limit width */
+      }
+    </style>
+    <script>
+      require([
+        "esri/widgets/Sketch",
+        "esri/Map",
+        "esri/layers/GraphicsLayer",
+        "esri/views/MapView",
+        "esri/widgets/BasemapToggle",
+        "esri/Graphic",
+        "esri/geometry/Point"
+      ], (Sketch, Map, GraphicsLayer, MapView, BasemapToggle, Graphic, Point) => {
+        const graphicsLayer = new GraphicsLayer();
+
+        const map = new Map({
+          basemap: "topo-vector",
+          layers: [graphicsLayer],
+        });
+
+        const view = new MapView({
+          container: "viewDiv",
+          map: map,
+          zoom: 13,
+          center: [-177.366, 28.2], 
+        });
+
+        view.when(() => {
+
+          const basemapToggle = new BasemapToggle({
+            view: view,
+            nextBasemap: "satellite",          });
+
+view.ui.add(basemapToggle, "top-left");
+
+// Function to add a point to the map
+function addPoint(longitude, latitude) {
+  graphicsLayer.removeAll();
+
+  const point = new Point({
+    longitude: longitude,
+    latitude: latitude,
+  });
+
+  const markerSymbol = {
+    type: "simple-marker",
+    color: [226, 119, 40], // Orange
+    outline: {
+      color: [255, 255, 255], // White
+      width: 2,
+    },
+  };
+
+  const pointGraphic = new Graphic({
+    geometry: point,
+    symbol: markerSymbol,
+  });
+
+  graphicsLayer.add(pointGraphic);
+  view.center = point;
+  view.zoom = 13;
+}
+
+addPoint(-177.366, 28.2);
+
+// Event listener for the input box
+document.getElementById("submitButton").addEventListener("click", () => {
+  const userInput = document.getElementById("userInput").value;
+  const [latitude, longitude] = userInput.split(",").map(Number);
+
+  if (!isNaN(latitude) && !isNaN(longitude)) {
+    addPoint(longitude, latitude);
+  } else {
+    alert("Invalid input. Please enter valid latitude and longitude values.");
+  }
+});
+});
+});
+</script>
+</head>
+
+<body>
+<div id="container">
+<div id="leftPanel">
+<div id="infoPanel">
+<div id="inputPanel">
+  <textarea
+    id="userInput"
+    placeholder="Enter latitude,longitude: "
+    rows="5"
+  ></textarea>
+  <button id="submitButton">Submit</button>
+</div>
+
+<p><strong>Query :</strong></p>
+<p>
+  The Battle of Midway, fought from June 4-7, 1942, was a pivotal
+  naval engagement during World War II between the United States and
+  Imperial Japan. Taking place six months after the attack on Pearl
+  Harbor, Midway marked a crucial turning point in the Pacific
+  Theater. The American forces, under Admiral Chester W. Nimitz,
+  intercepted and decisively defeated a Japanese fleet aiming to
+
+</p>
+</div>
+</div>
+
+<div id="viewDiv"></div>
+
+<div id="imagePanel">
+<div id="placeholderTop">
+<p>
+  The Battle of Midway, fought from June 4-7, 1942, was a pivotal
+  naval engagement during World War II between the United States and
+  Imperial Japan. Taking place six months after the attack on Pearl
+  Harbor, Midway marked a crucial turning point in the Pacific
+  Theater. The American forces, under Admiral Chester W. Nimitz,
+</p>
+</div>
+<img
+src="https://i0.wp.com/port2flavors.com/wp-content/uploads/2022/07/placeholder-614.png?fit=1200%2C800&ssl=1"
+alt="Placeholder Image"
+/>
+<div id="placeholderBottom">
+<p>
+  The Battle of Midway, fought from June 4-7, 1942, was a pivotal
+  naval engagement during World War II between the United States and
+  Imperial Japan. Taking place six months after the attack on Pearl
+  Harbor, Midway marked a crucial turning point in the Pacific
+  Theater. The American forces, under Admiral Chester W. Nimitz,
+  intercepted and decisively defeated a Japanese fleet aiming to
+  occupy Midway Atoll. Through skillful tactics and intelligence
+</p>
+<p>
+  The Battle of Midway, fought from June 4-7, 1942, was a pivotal
+  naval engagement during World War II between the United States and
+  Imperial Japan. Taking place six months after the attack on Pearl
+  Harbor, Midway marked a crucial turning point in the Pacific
+  Theater. The American forces, under Admiral Chester W. Nimitz,
+  intercepted and decisively defeated a Japanese fleet aiming to
+  occupy Midway Atoll. Through skillful tactics and intelligence
+</p>
+</div>
+</div>
+</div>
+</
