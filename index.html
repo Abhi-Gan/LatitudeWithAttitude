@@ -72,7 +72,7 @@
       #imagePanel {
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         flex: 1;
         padding: 20px;
@@ -139,14 +139,14 @@
 
           view.ui.add(basemapToggle, "top-left");
 
-          function addPoint(longitude, latitude) {
+          function addPoint(longitude, latitude, title) {
             const point = new Point({
               longitude: longitude,
               latitude: latitude,
             });
 
             const popupTemplate = new PopupTemplate({
-              title: "Coordinates",
+              title: title,
               content: `Latitude: {latitude}<br>Longitude: {longitude}`,
             });
 
@@ -175,7 +175,7 @@
           }
 
           // Initial point for Midway Island
-          addPoint(-177.366, 28.2);
+          addPoint(-177.366, 28.2, "Midway Island");
 
           document
             .getElementById("submitButton")
@@ -208,10 +208,10 @@
                   const eventsList = data["relev_events_list"];
                   console.log(eventsList);
 
-                  // Optionally, you can add points for each event in the eventsList
+                  // Add points for each event in the eventsList
                   eventsList.forEach((event) => {
-                    const { x, y } = event;
-                    addPoint(x, y);
+                    const { x, y, "tag line": tagLine } = event;
+                    addPoint(x, y, tagLine);
                   });
                 })
                 .catch((error) => {
@@ -241,7 +241,7 @@
 
                 view.popup.open({
                   location: graphic.geometry,
-                  title: "Coordinates",
+                  title: graphic.popupTemplate.title,
                   content: `Latitude: ${latitude}<br>Longitude: ${longitude}`,
                 });
               } else {
