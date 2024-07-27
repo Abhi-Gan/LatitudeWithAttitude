@@ -1,0 +1,78 @@
+{
+    "paragraph_response": "The 1920's stock market crash, also known as Black Tuesday, occurred on October 29, 1929, and is often seen as the beginning of the Great Depression in the United States. However, it is important to contextualize this event within a broader global history to make connections to other events and draw parallels across space and time.\n\nOne significant connection to consider is the impact of the stock market crash on the global economy. The crash had far-reaching effects beyond the borders of the United States, leading to a worldwide economic downturn. Countries around the world experienced a decrease in trade, a rise in unemployment, and a general sense of economic instability. This transnational approach highlights the interconnectedness of the global economy and challenges the idea that the Great Depression was solely an American phenomenon.\n\nFurthermore, drawing parallels to other events across space and time can help us understand the underlying causes and consequences of the stock market crash. For example, the speculative bubble that led to the crash can be compared to other financial crises throughout history, such as the Tulip Mania in 17th century Holland or the Dot-Com Bubble in the late 1990s. These comparisons reveal a pattern of irrational exuberance and eventual market correction that transcends time and place.\n\nAnother important connection to consider is the role of government policies in response to the stock market crash. The New Deal programs implemented by President Franklin D. Roosevelt in the aftermath of the Great Depression are often credited with helping to stabilize the economy and provide relief to those most affected by the crisis. This response can be contrasted with austerity measures taken by governments in other parts of the world during economic downturns, highlighting different approaches to addressing financial crises.\n\nIn conclusion, by taking a transnational approach and making connections to other geographical places and events, we can gain a more nuanced understanding of the 1920's stock market crash and its broader implications. This approach challenges the dominant narrative of the Great Depression as a purely American phenomenon and emphasizes the interconnectedness of the global economy and the importance of government policies in shaping economic outcomes.",
+    "query": "1920's stock market crash",
+    "relev_events_list": [
+        {
+            "end date": "1929-10-29",
+            "location": "New York City, New York, USA",
+            "query": "1929 stock market crash New York City",
+            "relev_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRn-iy-hZNMm-s3nCvLm25OTubIISYSwCJ-nZHGgKoJUaipSHeZ5c1GAIRygko&s",
+            "start date": "1929-10-29",
+            "tag line": "1920's stock market crash (Black Tuesday)",
+            "x": -74.0072301,
+            "y": 40.7130466
+        },
+        {
+            "end date": "1939-03-01",
+            "location": "United States",
+            "query": "Great Depression",
+            "relev_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwLWyA3K3PASNss_DW4czVWx_gPLcrEMkm9bBdp1brPOXtYCE2DUFtlLQQmH0&s",
+            "start date": "1929-10-29",
+            "tag line": "Great Depression",
+            "x": -99.41461919,
+            "y": 39.398703156
+        },
+        {
+            "end date": "1939-03-01",
+            "location": "Worldwide",
+            "query": "Great Depression",
+            "relev_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrA3uwCV8r5RhkVfnWZKfCiA4JnTaYlrL-H2DrBoNdVwDfi8YyESWFzE14ig&s",
+            "start date": "1929-10-29",
+            "tag line": "Great Depression",
+            "x": -80.427512832362,
+            "y": 26.029568960298
+        },
+        {
+            "end date": "1637-01-01",
+            "location": "Holland",
+            "query": "Tulip Mania Holland",
+            "relev_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAQ1FuLKCr3N7bAWVPgoeEigTlhdFiJ17heFsJ4TFmkhU689zyTlBYlM-K4wQ&s",
+            "start date": "1634-01-01",
+            "tag line": "Tulip Mania",
+            "x": 5.616126398,
+            "y": 52.249375293
+        },
+        {
+            "end date": "2001-03-10",
+            "location": "United States",
+            "query": "Dot-Com Bubble",
+            "relev_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7Tu6G41gxTCzELe2Q1HYVB2HpMLeIU_EKteqCCdrnSYo5eW_rik2E9hQ2sJE&s",
+            "start date": "1995-01-01",
+            "tag line": "Dot-Com Bubble",
+            "x": -99.41461919,
+            "y": 39.398703156
+        },
+        {
+            "end date": "1938-06-30",
+            "location": "United States",
+            "query": "New Deal programs",
+            "relev_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5GL14jOUoaiowaGhaxQCskcyztck1PSMSW9xU2um9rN8cmYtMajcbobQCqnE&s",
+            "start date": "1933-03-04",
+            "tag line": "New Deal programs",
+            "x": -99.41461919,
+            "y": 39.398703156
+        }
+    ],
+    "relev_images": [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyePvmfQ85c3YT-Oj3dFnY5i4__P7mS54S8I7kIxVr_siGWPbpi31gSABFjA&s",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRq0ipdEVGwtmqR0Ko-xDsCXu5U8LIaDWewWYNEIbDARWrofRX-WZcbQwYKHA&s",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuFjtw_-iuw-nyFLItQK3PFE084yju7SZhuCgO6ZDThprfCJ_0tDz9pqbA3g&s",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRwjT25a13im7SD9ed8J9Pg9TK3cDgnVxg_Hv8JcvjBR8hPiI2F82nCKDX1rQ&s",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRn-iy-hZNMm-s3nCvLm25OTubIISYSwCJ-nZHGgKoJUaipSHeZ5c1GAIRygko&s",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXGoUqaLYh8ab7JmfDeNrWCtIlOfvOej7n2BKvxyoNHOuXEaV5g0CRiLtQNg&s",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXgq3MBJA2JNv4YITBdSHEhKaa6nnY7wxUi5-S9zQCyPRyyuAXhW1AfANJqQ&s",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnCDm0IUREw9BgnuCdlYaxjrtya_ROhI_qRmynpzAOjxtdjhZGPUGCMMC_zg&s",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSx7fFFMiaORXYNfPClmpGimbR7HiLnmToqI4iRWrd5Gsq0WJP3ESqADRAug&s",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZSZii7UAQD8UMQCJIhybHxUdc33AiQNhQG_2NeChv4ghuTSiEgr0VsARYsw&s"
+    ]
+}
