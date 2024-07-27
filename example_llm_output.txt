@@ -1,0 +1,17 @@
+{'answer': 'European colonialism in Southeast Asia had a significant impact on the region, with various events and movements shaping its history. The colonization by European powers such as the British, Dutch, French, and Portuguese led to the exploitation of resources, the imposition of colonial rule, and the spread of Western influence. These colonial powers established trading posts, monopolized trade routes, and exploited local labor and resources for their own benefit. The impacts of European colonialism in Southeast Asia were far-reaching, affecting the social, economic, and political landscape of the region.',
+ 'image url': 'some image url',
+ 'events': [{'tag line': 'Establishment of British Malaya',
+   'start date': '1824-01-01',
+   'end date': '1957-08-31',
+   'query': 'British Malaya colonization',
+   'image url': 'some image url',
+   'location': 'Malaysia',
+   'x_loc': 112.5,
+   'y_loc': 2.5},
+...
+   'end date': '20th century',
+   'query': 'impact of European colonialism in Southeast Asia',
+   'image url': 'some image url',
+   'location': 'Southeast Asia',
+   'x_loc': 100.01076395,
+   'y_loc': 8.25229049}]}
