@@ -6,7 +6,7 @@
       name="viewport"
       content="initial-scale=1,maximum-scale=1,user-scalable=no"
     />
-    <title>Dynamic Location Input | ArcGIS Maps SDK for JavaScript</title>
+    <title>WordMap | ArcGIS Maps SDK for JavaScript</title>
 
     <link
       rel="stylesheet"
@@ -101,26 +101,17 @@
     </style>
     <script>
       require([
-        "esri/widgets/Sketch",
         "esri/Map",
         "esri/layers/GraphicsLayer",
         "esri/views/MapView",
         "esri/widgets/BasemapToggle",
         "esri/Graphic",
         "esri/geometry/Point",
-      ], (
-        Sketch,
-        Map,
-        GraphicsLayer,
-        MapView,
-        BasemapToggle,
-        Graphic,
-        Point
-      ) => {
+      ], (Map, GraphicsLayer, MapView, BasemapToggle, Graphic, Point) => {
         const graphicsLayer = new GraphicsLayer();
 
         const map = new Map({
-          basemap: "topo-vector",
+          basemap: "satellite",
           layers: [graphicsLayer],
         });
 
@@ -128,27 +119,17 @@
           container: "viewDiv",
           map: map,
           zoom: 13,
-          center: [-177.366, 28.2], // Initial coordinates for Midway Island
+          center: [-177.366, 28.2],
         });
 
         view.when(() => {
-          const sketch = new Sketch({
-            layer: graphicsLayer,
-            view: view,
-            // graphic will be selected as soon as it is created
-            creationMode: "update",
-          });
-
-          view.ui.add(sketch, "top-right");
-
           const basemapToggle = new BasemapToggle({
             view: view,
-            nextBasemap: "satellite",
+            nextBasemap: "topo-vector",
           });
 
           view.ui.add(basemapToggle, "top-left");
 
-          // Function to add a point to the map
           function addPoint(longitude, latitude) {
             const point = new Point({
               longitude: longitude,
@@ -177,7 +158,6 @@
           // Initial point for Midway Island
           addPoint(-177.366, 28.2);
 
-          // Event listener for the input box
           document
             .getElementById("submitButton")
             .addEventListener("click", () => {
@@ -186,6 +166,8 @@
 
               if (!isNaN(latitude) && !isNaN(longitude)) {
                 addPoint(longitude, latitude);
+                document.getElementById("queryText").innerText = `${userInput}`;
+                document.getElementById("userInput").value = "";
               } else {
                 alert(
                   "Invalid input. Please enter valid latitude and longitude values."
@@ -211,7 +193,7 @@
           <div id="inputPanel">
             <textarea
               id="userInput"
-              placeholder="Enter latitude,longitude: "
+              placeholder="Enter query: "
               rows="5"
             ></textarea>
             <calcite-button id="submitButton" appearance="solid" color="blue"
@@ -222,23 +204,8 @@
             >
           </div>
 
-          <p><strong>Query :</strong></p>
-          <p>
-            The Battle of Midway, fought from June 4-7, 1942, was a pivotal
-            naval engagement during World War II between the United States and
-            Imperial Japan. Taking place six months after the attack on Pearl
-            Harbor, Midway marked a crucial turning point in the Pacific
-            Theater. The American forces, under Admiral Chester W. Nimitz,
-            intercepted and decisively defeated a Japanese fleet aiming to
-            occupy Midway Atoll. Through skillful tactics and intelligence
-            operations, including the use of intercepted Japanese
-            communications, the U.S. Navy inflicted significant losses on Japan,
-            sinking four aircraft carriers while losing only one of their own.
-            The battle not only halted Japan's expansion but also shifted the
-            strategic initiative in favor of the Allies, demonstrating the
-            importance of naval air power and intelligence in determining the
-            course of the war in the Pacific.
-          </p>
+          <p><strong>Query: </strong></p>
+          <p id="queryText"></p>
         </div>
       </div>
 
