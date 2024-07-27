@@ -47,10 +47,12 @@
         align-items: center;
         justify-content: center;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border-bottom: 2px solid #000000;
       }
 
       #topBar img {
         height: 40px;
+        border-bottom: #39ca51;
       }
 
       #mainContent {
@@ -66,7 +68,7 @@
         padding: 10px;
         background-color: #f4fff3;
         overflow-y: auto;
-        border-right: 1px solid #ccc;
+        border-right: 2px solid #000000;
       }
 
       #infoPanel {
@@ -83,6 +85,7 @@
         border-radius: 8px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         margin-bottom: 20px;
+        border: 2px solid #000000;
       }
 
       #inputPanel textarea {
@@ -92,7 +95,7 @@
         font-size: 14px;
         box-sizing: border-box;
         resize: vertical;
-        border: 1px solid #ccc;
+        /* border: 2px solid #000000; */
         border-radius: 4px;
       }
 
@@ -101,11 +104,13 @@
         padding: 10px;
         border-radius: 4px;
         margin-top: 10px;
+        /* border: 2px solid #000000; */
       }
 
       #viewDiv {
         flex: 2;
         background-color: #f0f0f0;
+        border: 4px solid #60b70a;
       }
 
       #imagePanel {
@@ -118,6 +123,7 @@
         overflow-y: auto;
         box-sizing: border-box;
         background-color: #f4fff3;
+        border: 2px solid #000000;
       }
 
       #imagePanel img {
@@ -171,7 +177,7 @@
         const view = new MapView({
           container: "viewDiv",
           map: map,
-          zoom: 13,
+          zoom: 14,
           center: [-177.366, 28.2],
         });
 
@@ -193,7 +199,14 @@
           });
 
           view.ui.add(basemapToggle, "top-left");
-
+          const colors = [
+            [226, 119, 40], // Orange
+            [0, 112, 255], // Blue
+            [0, 255, 0], // Green
+            [255, 0, 0], // Red
+            [255, 255, 0], // Yellow
+          ];
+          let colorIndex = 0;
           function addPoint(longitude, latitude, title) {
             const point = new Point({
               longitude: longitude,
@@ -207,7 +220,7 @@
 
             const markerSymbol = {
               type: "simple-marker",
-              color: [226, 119, 40], // Orange
+              color: colors[colorIndex],
               outline: {
                 color: [255, 255, 255], // White
                 width: 2,
@@ -265,7 +278,7 @@
                   infoPanel.innerText = data["paragraph_response"];
 
                   const eventsList = data["relev_events_list"];
-
+                  colorIndex = (colorIndex + 1) % colors.length;
                   // Add points for each event in the eventsList
                   eventsList.forEach((event) => {
                     const { x, y, "tag line": tagLine } = event;
