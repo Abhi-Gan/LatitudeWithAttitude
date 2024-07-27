@@ -1,0 +1,60 @@
+{
+    "paragraph_response": "The invention of the lightbulb by Thomas Edison in the late 19th century is often hailed as a groundbreaking moment in human history, marking the beginning of widespread electrification and transforming the way we live. However, this narrative tends to focus solely on the American context and Edison's role, overlooking the broader global history and connections to other events.\n\nOne lesser discussed connection is the role of inventors and scientists from other countries in the development of electric lighting technology. For example, British inventor Joseph Swan also independently created a working incandescent lightbulb around the same time as Edison. This highlights the transnational nature of technological innovation during this period and challenges the dominant narrative of American exceptionalism in the field of invention.\n\nFurthermore, the spread of electric lighting technology had far-reaching implications beyond the United States. In Europe, the adoption of electric lighting in cities like Paris and London revolutionized urban infrastructure and transformed the night-time landscape. This parallels the modernization efforts taking place in other parts of the world during the same period, such as the Meiji Restoration in Japan and the Qing Dynasty reforms in China.\n\nBy exploring these connections and taking a transnational approach to the invention of the lightbulb, we can see that technological advancements are often the result of collaboration and exchange across borders. This challenges the notion of individual genius and highlights the importance of global networks in driving innovation. Ultimately, the invention of the lightbulb was not just an American achievement, but a testament to the interconnectedness of the world in the pursuit of progress.",
+    "query": "invention of the lightbulb",
+    "relev_events_list": [
+        {
+            "end date": "1879-10-21",
+            "location": "Menlo Park, New Jersey, USA",
+            "query": "Thomas Edison lightbulb invention",
+            "start date": "1879-10-21",
+            "tag line": "Invention of the lightbulb by Thomas Edison",
+            "x": -74.4121,
+            "y": 40.51872
+        },
+        {
+            "end date": "1878-12-18",
+            "location": "Newcastle upon Tyne, England",
+            "query": "Joseph Swan lightbulb invention",
+            "start date": "1878-12-18",
+            "tag line": "Invention of the incandescent lightbulb by Joseph Swan",
+            "x": -1.610202459,
+            "y": 54.978017857
+        },
+        {
+            "end date": "late 19th century",
+            "location": "Paris, France",
+            "query": "electric lighting Paris London",
+            "start date": "late 19th century",
+            "tag line": "Adoption of electric lighting in cities like Paris and London",
+            "x": 2.361657337,
+            "y": 48.863697576
+        },
+        {
+            "end date": "late 19th century",
+            "location": "London, England",
+            "query": "electric lighting Paris London",
+            "start date": "late 19th century",
+            "tag line": "Adoption of electric lighting in cities like Paris and London",
+            "x": -0.1262362,
+            "y": 51.5001524
+        },
+        {
+            "end date": "1912-07-30",
+            "location": "Japan",
+            "query": "Meiji Restoration Japan",
+            "start date": "1868-01-03",
+            "tag line": "Meiji Restoration in Japan",
+            "x": 139.271495,
+            "y": 36.655226998
+        },
+        {
+            "end date": "early 20th century",
+            "location": "China",
+            "query": "Qing Dynasty reforms China",
+            "start date": "late 19th century",
+            "tag line": "Qing Dynasty reforms in China",
+            "x": 103.930027033,
+            "y": 36.567348398
+        }
+    ]
+}

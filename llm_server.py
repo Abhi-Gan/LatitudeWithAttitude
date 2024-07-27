@@ -26,7 +26,7 @@ client = None
 if OPENAI_API_KEY:
     client = OpenAI(api_key=OPENAI_API_KEY)
 
-USE_MOCK_DATA = True or (OPENAI_API_KEY is None)
+USE_MOCK_DATA = False or (OPENAI_API_KEY is None)
 
 # we want to use this model
 OPENAI_MODEL = "gpt-3.5-turbo-0125"
@@ -121,8 +121,13 @@ def expand_compact_dict(combined_locs_data):
 
     locations_list = [curDict["location"] for curDict in individ_locs_dicts]
 
+    def sorted_batch_geocode(locations_list):
+        batch_geocode_responses = batch_geocode(locations_list, out_fields='location')
+        return sorted(batch_geocode_responses, key=lambda x: x['attributes']['ResultID'])
+
     # geocode in one request
-    all_geocode_responses = batch_geocode(locations_list)
+    all_geocode_responses = sorted_batch_geocode(locations_list)
+
     # update x y 
     for i in range(len(individ_locs_dicts)):
         cur_dict = individ_locs_dicts[i]
@@ -138,6 +143,7 @@ def expand_compact_dict(combined_locs_data):
 def get_overall_info(query):
     paragraph_response = discuss_topic(query)
     related_events_list = get_related_events(paragraph_response)
+    print(related_events_list)
     # separate entries for each location
     individ_events_list = expand_compact_dict(related_events_list)
 
