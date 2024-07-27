@@ -180,8 +180,40 @@
           document
             .getElementById("submitButton")
             .addEventListener("click", () => {
+              // get query
               const userInput = document.getElementById("userInput").value;
-              const [latitude, longitude] = userInput.split(",").map(Number);
+
+              // make post request to the LLM
+              // Define the URL of your Flask backend endpoint
+              const url = 'http://127.0.0.1:5000/historyQuery';
+
+              // Define the data you want to send in the request body
+              const data = {
+                  query: userInput
+              };
+
+              // Make the POST request using fetch
+              fetch(url, {
+                  method: 'POST', // Specify the request method
+                  headers: {
+                      'Content-Type': 'application/json' // Set the content type to JSON
+                  },
+                  body: JSON.stringify(data) // Convert the data to a JSON string
+              })
+              .then(response => response.json()) // Parse the JSON response
+              .then(data => {
+                  console.log('Success:', data); // Handle the response data
+                  // display paragrtaph text
+                  infoPanel = document.getElementById("imagePanel");
+                  infoPanel.innerText = data["paragraph_response"];
+
+                  eventsList = data["relev_events_list"];
+                  console.log(eventsList);
+
+              })
+              .catch((error) => {
+                  console.error('Error:', error); // Handle any errors
+              });
 
               if (!isNaN(latitude) && !isNaN(longitude)) {
                 addPoint(longitude, latitude);
