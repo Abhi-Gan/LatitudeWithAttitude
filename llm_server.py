@@ -33,6 +33,7 @@ OPENAI_MODEL = "gpt-3.5-turbo-0125"
 
 app = Flask(__name__)
 CORS(app)
+
 def get_llm_response(prompt, as_json=False):
     chat_response = client.chat.completions.create(
         model=OPENAI_MODEL,
