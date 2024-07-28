@@ -416,16 +416,20 @@
                   colorIndex = (colorIndex + 1) % colors.length;
 
                   // document.getElementById("loading").style.display = "none";
+
+                  document.getElementById("loading").style.display = "none";
+                  document.getElementById("overlay").style.display = "none";
                 })
 
                 .catch((error) => {
                   console.error("Error:", error);
+
+                  document.getElementById("loading").style.display = "none";
+                  document.getElementById("overlay").style.display = "none";
                 });
 
               // Clear the input box and update the query text
               // document.getElementById("userInput").textContent = ``;
-              document.getElementById("loading").style.display = "none";
-              document.getElementById("overlay").style.display = "none";
             });
 
           document

@@ -19,6 +19,9 @@ from bs4 import BeautifulSoup
 from arcgis.geocoding import geocode, batch_geocode, get_geocoders
 from arcgis.gis import GIS
 
+# mock waiting
+import time
+
 ESRI_API_KEY = os.getenv('ESRI_API_KEY_UNSAFE')
 # initialize GIS
 gis = GIS(api_key=ESRI_API_KEY)
@@ -31,7 +34,7 @@ if OPENAI_API_KEY:
     client = OpenAI(api_key=OPENAI_API_KEY)
 
 # SWITCH TO TURN ON / OFF MOCK DATA
-USE_MOCK_DATA = False or (OPENAI_API_KEY is None)
+USE_MOCK_DATA = True or (OPENAI_API_KEY is None)
 # SWITCH TO TURN ON IMAGE SCRAPING
 SCRAPE_IMAGES = False
 
@@ -213,6 +216,7 @@ def historyQuery():
     query_str = data['query']
     # check if I have the openAI api
     if USE_MOCK_DATA:
+        time.sleep(2)
         fname = './example_responses/example_response1_abomb.json'
         if '1' in query_str:
             fname = './example_responses/example_response1_abomb.json'
