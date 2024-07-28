@@ -52,28 +52,11 @@
         --calcite-ui-brand-hover: #5ea123; /* Custom hover color */
         --calcite-ui-brand-press: #558f1f; /* Custom press color */
       }
-      #topBar {
-        width: 100%;
-        height: 100px;
-        background-color: #2a351f;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        /* border-bottom: 2px solid #000000; */
-      }
-
-      #topBar img {
-        height: 40px;
-        border-bottom: #39ca51;
-      }
-
       #mainContent {
         display: flex;
         flex-direction: row;
         flex: 1;
       }
-
       #leftPanel {
         width: 20%;
         display: flex;
@@ -81,19 +64,17 @@
         padding: 10px;
         background-color: #2a351f;
         color: white;
-        max-height: 100%/*700px;*/
+        max-height: 100%;
         overflow-y: auto;
         border-right: 2px solid #000000;
         border-top: 2px solid #000000;
       }
-
       #infoPanel {
         flex: 1;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
       }
-
       #inputPanel {
         width: 90%;
         padding: 15px;
@@ -103,7 +84,6 @@
         margin-bottom: 20px;
         border: 2px solid #000000;
       }
-
       #inputPanel textarea {
         width: 100%;
         height: 80px;
@@ -113,21 +93,16 @@
         resize: vertical;
         border-radius: 4px;
       }
-
       #queryText {
-        /* background-color: #e0f7fa; */
         padding: 10px;
         border-radius: 4px;
         margin-top: 10px;
       }
-
       #viewDiv {
         flex: 2;
         background-color: #f0f0f0;
-        max-height: 100%;/*700px;*
-        /* border: 1px solid #67b826; */
+        max-height: 100%; /* Set maximum height for the map */
       }
-
       #imagePanel {
         display: flex;
         flex-direction: column;
@@ -135,34 +110,25 @@
         align-items: left;
         flex: 1;
         padding: 20px;
-        max-height: 800px;
-
+        max-height: 900px;
         overflow-y: auto;
         box-sizing: border-box;
         background-color: #2a351f;
         color: white;
         border: 2px solid #000000;
       }
-
       #imagePanel img {
         max-width: 100%;
         max-height: 100%;
         margin-bottom: 10px; /* Space between image and text */
         border-radius: 8px;
       }
-
       #placeholderTop,
       #placeholderBottom {
         margin-top: 10px; /* Adjust as needed */
-        text-align: center;
-      }
-
-      #placeholderTop p,
-      #placeholderBottom p {
-        overflow-wrap: break-word; /* Wrap long words */
+        text-align: left;
         max-width: 100%; /* Limit width */
       }
-
       #queryList {
         margin-top: 20px;
         padding: 10px;
@@ -171,12 +137,10 @@
         max-height: 200px;
         overflow-y: auto;
       }
-
       #queryList ul {
         list-style-type: none;
         padding: 0;
       }
-
       #queryList li {
         margin-bottom: 5px;
         padding: 5px;
@@ -184,7 +148,31 @@
         border-radius: 4px;
         color: black;
       }
+      #overlay {
+        display: none; /* Hidden by default */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 1000;
+      }
+
+      #loading {
+        width: 25%;
+        height: 40%;
+        display: none; /* Hidden by default */
+        position: fixed;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1001;
+      }
     </style>
+    <div id="overlay"></div>
+    <img id="loading" src="Loading.gif" alt="Loading..." />
+
     <script>
       require([
         "esri/Map",
@@ -300,16 +288,27 @@
             const queryList = document.getElementById("queryList");
             queryList.innerHTML =
               "<ul>" +
-              queries.map((query) => `<li>${query}</li>`).join("") +
+              queries
+                .slice()
+                .reverse()
+                .map((query) => `<li>${query}</li>`)
+                .join("") +
               "</ul>";
           }
 
           // Initial point for Midway Island
-          addPoint(-177.366, 28.2, "Midway Island", 'https://i.insider.com/60ba229893c6fa00195e51ee?width=1200&format=jpeg');
+          addPoint(
+            -177.366,
+            28.2,
+            "Midway Island",
+            "https://i.insider.com/60ba229893c6fa00195e51ee?width=1200&format=jpeg"
+          );
 
           document
             .getElementById("submitButton")
             .addEventListener("click", () => {
+              document.getElementById("overlay").style.display = "block";
+              document.getElementById("loading").style.display = "block";
               // Get query
               const userInput = document.getElementById("userInput").value;
               queries.push(userInput);
@@ -346,7 +345,12 @@
                   // Add points for each event in the eventsList
                   eventsList.forEach((event) => {
                     //const { x, y, "tag line": tagLine, relev_img } = event;
-                    addPoint(event['x'], event['y'], event['tag line'], event['relev_image']);
+                    addPoint(
+                      event["x"],
+                      event["y"],
+                      event["tag line"],
+                      event["relev_image"]
+                    );
                   });
 
                   // Show the entire world extent
@@ -354,14 +358,20 @@
 
                   // Cycle to the next color
                   colorIndex = (colorIndex + 1) % colors.length;
+
+                  // document.getElementById("loading").style.display = "none";
                 })
+
                 .catch((error) => {
                   console.error("Error:", error);
                 });
 
               // Clear the input box and update the query text
-              // document.getElementById("queryText").innerText = `${userInput}`;
-              document.getElementById("userInput").value = "";
+              // document.getElementById("userInput").textContent = ``;
+              setTimeout(() => {
+                document.getElementById("loading").style.display = "none";
+                document.getElementById("overlay").style.display = "none";
+              }, 3000);
             });
 
           // Event listener for the clear button
@@ -369,7 +379,7 @@
             .getElementById("clearButton")
             .addEventListener("click", () => {
               graphicsLayer.removeAll();
-              document.getElementById("queryText").innerText = "";
+              document.getElementById("userInput").innerText = "";
               queries.length = 0; // Clear the queries array
               updateQueryList(); // Update the query list display
             });
@@ -398,11 +408,10 @@
   </head>
 
   <body>
-    <div id="topBar">
-      <img src="Wordmap-Logo-02.png" alt="Logo" />
-    </div>
     <div id="mainContent">
       <div id="leftPanel">
+        <img src="Wordmap-Logo-02.png" alt="Logo" style="margin-bottom: 20px" />
+        <br />
         <div id="infoPanel">
           <div id="inputPanel">
             <textarea
