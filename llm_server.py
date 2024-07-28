@@ -31,7 +31,7 @@ if OPENAI_API_KEY:
     client = OpenAI(api_key=OPENAI_API_KEY)
 
 # SWITCH TO TURN ON / OFF MOCK DATA
-USE_MOCK_DATA = False or (OPENAI_API_KEY is None)
+USE_MOCK_DATA = True or (OPENAI_API_KEY is None)
 
 # we want to use this model
 OPENAI_MODEL = "gpt-3.5-turbo-0125"
