@@ -233,15 +233,18 @@
           ];
           let colorIndex = 0;
 
-          function addPoint(longitude, latitude, title) {
+          function addPoint(longitude, latitude, title, url) {
             const point = new Point({
               longitude: longitude,
               latitude: latitude,
             });
-
+        
             const popupTemplate = new PopupTemplate({
-              title: title,
-              content: `Latitude: {latitude}<br>Longitude: {longitude}`,
+              title: `${title}`, // alt="Image" style="width:250px;height:auto;"
+              content: `<img src="${url}">
+              <br>
+              [${latitude}, ${longitude}]
+                `,
             });
 
             const markerSymbol = {
@@ -258,7 +261,7 @@
               symbol: markerSymbol,
               attributes: {
                 latitude: latitude,
-                longitude: longitude,
+                longitude: longitude
               },
               popupTemplate: popupTemplate,
             });
@@ -282,7 +285,7 @@
           }
 
           // Initial point for Midway Island
-          addPoint(-177.366, 28.2, "Midway Island");
+          addPoint(-177.366, 28.2, "Midway Island", 'https://i.insider.com/60ba229893c6fa00195e51ee?width=1200&format=jpeg');
 
           document
             .getElementById("submitButton")
@@ -362,7 +365,7 @@
                 view.popup.open({
                   location: graphic.geometry,
                   title: graphic.popupTemplate.title,
-                  content: `Latitude: ${latitude}<br>Longitude: ${longitude}`,
+                  content: graphic.popupTemplate.content, //`Latitude: ${latitude}<br>Longitude: ${longitude}`,
                 });
               } else {
                 view.popup.close();
