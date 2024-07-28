@@ -81,7 +81,7 @@
         padding: 10px;
         background-color: #2a351f;
         color: white;
-        max-height: 700px;
+        max-height: 100%/*700px;*/
         overflow-y: auto;
         border-right: 2px solid #000000;
         border-top: 2px solid #000000;
@@ -124,7 +124,7 @@
       #viewDiv {
         flex: 2;
         background-color: #f0f0f0;
-        max-height: 700px;
+        max-height: 100%;/*700px;*
         /* border: 1px solid #67b826; */
       }
 
@@ -135,7 +135,7 @@
         align-items: left;
         flex: 1;
         padding: 20px;
-        max-height: 700px;
+        max-height: 800px;
 
         overflow-y: auto;
         box-sizing: border-box;
@@ -253,17 +253,18 @@
           let colorIndex = 0;
 
           function addPoint(longitude, latitude, title, url) {
+            console.log(`url: ${url}`);
             const point = new Point({
               longitude: longitude,
               latitude: latitude,
             });
-        
+
             const popupTemplate = new PopupTemplate({
-              title: `${title}`, // alt="Image" style="width:250px;height:auto;"
-              content: `<img src="${url}">
+              title: title,
+              content: `
+              <img src="${url}"$>
               <br>
-              [${latitude}, ${longitude}]
-                `,
+              [${latitude}, ${longitude}]`,
             });
 
             const markerSymbol = {
@@ -280,7 +281,7 @@
               symbol: markerSymbol,
               attributes: {
                 latitude: latitude,
-                longitude: longitude
+                longitude: longitude,
               },
               popupTemplate: popupTemplate,
             });
@@ -344,8 +345,8 @@
 
                   // Add points for each event in the eventsList
                   eventsList.forEach((event) => {
-                    const { x, y, "tag line": tagLine } = event;
-                    addPoint(x, y, tagLine);
+                    //const { x, y, "tag line": tagLine, relev_img } = event;
+                    addPoint(event['x'], event['y'], event['tag line'], event['relev_image']);
                   });
 
                   // Show the entire world extent
@@ -380,11 +381,11 @@
                 const graphic = results[0].graphic;
                 const latitude = graphic.attributes.latitude;
                 const longitude = graphic.attributes.longitude;
-
+                // dasdasdsadsadsadsadsadsa
                 view.popup.open({
                   location: graphic.geometry,
                   title: graphic.popupTemplate.title,
-                  content: graphic.popupTemplate.content, //`Latitude: ${latitude}<br>Longitude: ${longitude}`,
+                  content: graphic.popupTemplate.content,
                 });
               } else {
                 view.popup.close();

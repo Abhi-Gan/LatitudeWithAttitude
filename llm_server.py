@@ -31,7 +31,7 @@ if OPENAI_API_KEY:
     client = OpenAI(api_key=OPENAI_API_KEY)
 
 # SWITCH TO TURN ON / OFF MOCK DATA
-USE_MOCK_DATA = True or (OPENAI_API_KEY is None)
+USE_MOCK_DATA = False or (OPENAI_API_KEY is None)
 
 # we want to use this model
 OPENAI_MODEL = "gpt-3.5-turbo-0125"
@@ -171,7 +171,7 @@ def get_relev_img_urls(query):
     for img in images:
         # print(img)
         cur_src_url = img['src']
-        if not cur_src_url.startswith("/images"):
+        if cur_src_url.startswith("https://"):
             img_urls.append(img['src'])
 
     # return top images
