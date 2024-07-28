@@ -169,9 +169,23 @@
         transform: translate(-50%, -50%);
         z-index: 1001;
       }
+      #introVideo {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 1012;
+      }
     </style>
     <div id="overlay"></div>
     <img id="loading" src="Loading.gif" alt="Loading..." />
+
+    <video id="introVideo" autoplay muted>
+      <source src="opening.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
 
     <script>
       require([
@@ -333,26 +347,27 @@
                 .then((data) => {
                   console.log("Success:", data);
                   // Display paragraph text response w images
-                  const infoPanel = document.getElementById('imagePanel');
+                  const infoPanel = document.getElementById("imagePanel");
                   // infoPanel.innerText = data["paragraph_response"];
                   // Remove existing content
                   infoPanel.innerHTML = "";
                   const container = document.createElement("div");
-                  const paragraphList = data['paragraph_response'].split('\n\n');
+                  const paragraphList =
+                    data["paragraph_response"].split("\n\n");
 
                   // create list from 1 of this, all the other points, and then this
-                  const imagesList = data['relev_images'];
-                  const eventsList = data['relev_events_list'];
+                  const imagesList = data["relev_images"];
+                  const eventsList = data["relev_events_list"];
                   console.log(eventsList);
                   // data['relev_events_list']
                   eventsImages = [];
                   eventsList.forEach((event) => {
                     eventsImages.push(event["relev_image"]);
-                  })
+                  });
                   paragraphImages = [
                     // ...imagesList.slice(0, 1),
                     ...eventsImages,
-                    ...imagesList.slice(1)
+                    ...imagesList.slice(1),
                   ];
 
                   for (let i = 0; i < paragraphList.length; i++) {
@@ -402,13 +417,10 @@
 
               // Clear the input box and update the query text
               // document.getElementById("userInput").textContent = ``;
-              setTimeout(() => {
-                document.getElementById("loading").style.display = "none";
-                document.getElementById("overlay").style.display = "none";
-              }, 3000);
+              document.getElementById("loading").style.display = "none";
+              document.getElementById("overlay").style.display = "none";
             });
 
-          // Event listener for the clear button
           document
             .getElementById("clearButton")
             .addEventListener("click", () => {
@@ -418,7 +430,7 @@
               updateQueryList(); // Update the query list display
             });
 
-          view.on("pointer-move", (event) => {
+          view.on("click ", (event) => {
             view.hitTest(event).then((response) => {
               const results = response.results;
               if (results.length > 0 && results[0].graphic) {
@@ -436,6 +448,9 @@
               }
             });
           });
+          setTimeout(() => {
+            document.getElementById("introVideo").style.display = "none";
+          }, 6000);
         });
       });
     </script>
