@@ -1,86 +1,36 @@
 {
-    "paragraph_response": "The Chartist Movement was a working-class political reform movement in Britain during the mid-19th century that sought to secure political rights and influence for the working class. The movement was born out of the economic hardships faced by workers during the Industrial Revolution and the lack of political representation for the working class in a system dominated by the aristocracy and wealthy landowners.\n\nIn a broader global history context, the Chartist Movement can be seen as part of a larger wave of social and political movements that emerged in response to the rapid industrialization and urbanization of the 19th century. Similar movements advocating for political reform and workers' rights were also taking place in other parts of the world, such as the labor movements in the United States and the socialist movements in Europe.\n\nDrawing parallels to other events across space and time, the Chartist Movement can be compared to the struggle for civil rights in the United States during the same period. Both movements were fighting against entrenched power structures that denied political rights and representation to marginalized groups, and both movements faced resistance and repression from the authorities.\n\nTaking a transnational approach, the connections between the Chartist Movement and other geographical places and groups can be seen through the exchange of ideas and inspiration between different social and political movements around the world. For example, the Chartists were influenced by the French Revolution and the writings of Karl Marx, showing the interconnectedness of political movements across borders.\n\nOverall, the central theme that emerges from these connections is the universal struggle for political rights and representation by marginalized groups in the face of entrenched power structures. By highlighting these connections, we can see that the Chartist Movement was not an isolated event in British history, but part of a larger global movement for social and political change.",
+    "paragraph_response": "The Chartist movement was a working-class movement in 19th century Britain that advocated for political reform and the expansion of rights for the working class. The movement emerged in response to the disenfranchisement of the working class and sought to address issues such as electoral reform, the right to vote, and better working conditions.\n\nWhen considering the Chartist movement in a broader global context, parallels can be drawn to other movements for political reform and workers' rights around the world. For example, the Chartist movement can be compared to the labor movements in the United States during the same period, such as the fight for the eight-hour workday and better working conditions. Additionally, the Chartist movement can be connected to the broader wave of revolutions and uprisings that swept across Europe in the mid-19th century, as working-class individuals across different countries sought to challenge oppressive political systems and demand greater rights.\n\nTaking a transnational approach, it is important to highlight the connections between the Chartist movement and similar movements in other geographical places. For instance, the Chartist movement can be linked to the struggle for independence in Ireland, as both movements sought to challenge the existing power structures and advocate for greater political rights for the marginalized populations.\n\nBy examining these connections, a central theme emerges that challenges the dominant narrative of the Chartist movement as a purely British phenomenon. Instead, the movement can be seen as part of a larger global struggle for political reform and workers' rights, with parallels and connections to movements in other countries and regions. This broader perspective highlights the interconnected nature of social and political movements and emphasizes the shared goals and aspirations of working-class individuals across different parts of the world.",
     "query": "the chartist movement",
     "relev_events_list": [
         {
-            "end date": "1840-01-01",
-            "location": "Britain",
-            "query": "Industrial Revolution",
-            "relev_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2DV4wkgiqlWDjbvf0zQhDM6Uf3Y4Mj2_9xmdYNOcV0RdDMUTkX8bRZ7FzWg&s",
-            "start date": "1760-01-01",
-            "tag line": "Industrial Revolution",
-            "x": -1.969559544,
-            "y": 53.408386605
-        },
-        {
-            "end date": "1840-01-01",
-            "location": "Europe",
-            "query": "Industrial Revolution",
-            "relev_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4wK49B069sXB7W4hjyqOSC4IXzrZzVPM0aYOH4fzxC_GgUIN4Ib2pXuG-eQ&s",
-            "start date": "1760-01-01",
-            "tag line": "Industrial Revolution",
-            "x": 9.14062,
-            "y": 48.69096
-        },
-        {
-            "end date": "1840-01-01",
+            "end date": "19th century",
             "location": "United States",
-            "query": "Industrial Revolution",
-            "relev_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTU0H89chyMptHIFQpwf6o_7S_VDIe7nA-C_FJLFEei3IouFhcKrQPh1VcB28s&s",
-            "start date": "1760-01-01",
-            "tag line": "Industrial Revolution",
+            "query": "labor movements 19th century United States",
+            "relev_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxm5V6Mervgk2hl3GOH_fXnb6CmR3FMWCvHGbrwPihFb5fIwGOgVvW7guT7A&s",
+            "start date": "19th century",
+            "tag line": "Labor movements in the United States for the eight-hour workday and better working conditions",
             "x": -99.41461919,
             "y": 39.398703156
         },
         {
-            "end date": "1799-11-09",
-            "location": "France",
-            "query": "French Revolution",
-            "relev_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfdbTm2pjKWXlvpdxkid-ojqzJoF2bxh20w7utflFU_LR44dvaqZ8QPrvpOQ&s",
-            "start date": "1789-05-05",
-            "tag line": "French Revolution",
-            "x": 2.550539953,
-            "y": 46.559417044
+            "end date": "mid-19th century",
+            "location": "Europe",
+            "query": "revolutions mid-19th century Europe",
+            "relev_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7RcBP2Ys48ZdF_iu-cFBR1XRHFT6lRZu-g_PoT0Af4JCraii6tiwxUZZMsg&s",
+            "start date": "mid-19th century",
+            "tag line": "Wave of revolutions and uprisings across Europe in the mid-19th century",
+            "x": 9.14062,
+            "y": 48.69096
         },
         {
             "end date": "19th century",
-            "location": "United States",
-            "query": "Labor movements in the United States",
-            "relev_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ30TRd_OK7t8o7xrLYqOnjLbe10IAJsgoZfi-bxZHq0D2qxmAEbWVsGiv3Fg&s",
+            "location": "Ireland",
+            "query": "independence movement 19th century Ireland",
+            "relev_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJgD_Zuy-cwWYtP8NlhGoM6FCqnxf-3VclNNyCjE_sWbxMK-XsjYJBan0IYA&s",
             "start date": "19th century",
-            "tag line": "Labor movements in the United States",
-            "x": -99.41461919,
-            "y": 39.398703156
-        },
-        {
-            "end date": "19th century",
-            "location": "Europe",
-            "query": "Socialist movements in Europe",
-            "relev_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpHyL9NxgAfCDePY9CJpcKOb5ivGiwGAbzUtFk2HhV0-49u-MczBcOHkUAuMA&s",
-            "start date": "19th century",
-            "tag line": "Socialist movements in Europe",
-            "x": 9.14062,
-            "y": 48.69096
-        },
-        {
-            "end date": "1960-12-01",
-            "location": "United States",
-            "query": "Civil rights movement in the United States",
-            "relev_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgOtuTRQPCj3MImbIl-NznEPDacXuhrIzGyemy_aT82_wJ7Nl5adnnGGtc-A&s",
-            "start date": "1950-12-01",
-            "tag line": "Civil rights movement in the United States",
-            "x": -99.41461919,
-            "y": 39.398703156
-        },
-        {
-            "end date": "1883-03-14",
-            "location": "Europe",
-            "query": "Karl Marx",
-            "relev_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlCETdPZQnTGrMKYIarhCuI5YAeQ9yyLl7AAhf2zkkTFT2ZKbCU6aVVqPpVA&s",
-            "start date": "1818-05-05",
-            "tag line": "Influence of Karl Marx",
-            "x": 9.14062,
-            "y": 48.69096
+            "tag line": "Struggle for independence in Ireland",
+            "x": -8.146006147,
+            "y": 53.175879846
         }
     ],
     "relev_images": [

@@ -1,64 +1,124 @@
 {
-    "paragraph_response": "The 1920's stock market crash, also known as Black Tuesday, occurred on October 29, 1929, and is often seen as the beginning of the Great Depression in the United States. However, it is important to contextualize this event within a broader global history to make connections to other events and draw parallels across space and time.\n\nOne significant connection to consider is the impact of the stock market crash on the global economy. The crash had far-reaching effects beyond the borders of the United States, leading to a worldwide economic downturn. Countries around the world experienced a decrease in trade, a rise in unemployment, and a general sense of economic instability. This transnational approach highlights the interconnectedness of the global economy and challenges the idea that the Great Depression was solely an American phenomenon.\n\nFurthermore, drawing parallels to other events across space and time can help us understand the underlying causes and consequences of the stock market crash. For example, the speculative bubble that led to the crash can be compared to other financial crises throughout history, such as the Tulip Mania in 17th century Holland or the Dot-Com Bubble in the late 1990s. These comparisons reveal a pattern of irrational exuberance and eventual market correction that transcends time and place.\n\nAnother important connection to consider is the role of government policies in response to the stock market crash. The New Deal programs implemented by President Franklin D. Roosevelt in the aftermath of the Great Depression are often credited with helping to stabilize the economy and provide relief to those most affected by the crisis. This response can be contrasted with austerity measures taken by governments in other parts of the world during economic downturns, highlighting different approaches to addressing financial crises.\n\nIn conclusion, by taking a transnational approach and making connections to other geographical places and events, we can gain a more nuanced understanding of the 1920's stock market crash and its broader implications. This approach challenges the dominant narrative of the Great Depression as a purely American phenomenon and emphasizes the interconnectedness of the global economy and the importance of government policies in shaping economic outcomes.",
+    "paragraph_response": "The 1920's stock market crash, also known as the Great Crash of 1929, was a pivotal event in global history that had far-reaching consequences beyond just the United States. While the crash is often associated with the beginning of the Great Depression in the US, its impact was felt worldwide, leading to economic downturns in Europe, Latin America, and Asia.\n\nOne lesser-discussed connection is the link between the 1920's stock market crash and the global rise of fascism in the 1930s. The economic instability caused by the crash created fertile ground for extremist ideologies to take root, leading to the rise of fascist regimes in countries like Italy, Germany, and Spain. This connection highlights how economic crises can have political repercussions that shape the course of history.\n\nDrawing parallels to other events across space and time, we can see similarities between the 1920's stock market crash and the 2008 financial crisis. Both events were triggered by speculative bubbles in the financial markets and led to widespread economic hardship. The response to these crises also had transnational implications, with countries around the world implementing policies to mitigate the impact of the economic downturn.\n\nTaking a transnational approach, we can also make connections to other geographical places and groups affected by the 1920's stock market crash. For example, Latin American countries that relied on exports to the US faced significant economic challenges as demand for their products decreased. This highlights how interconnected the global economy was even in the early 20th century and how events in one part of the world could have ripple effects across continents.\n\nOverall, by exploring the connections between the 1920's stock market crash and other events in global history, we can argue that economic crises are not isolated events but are interconnected with political, social, and cultural developments. This challenges the dominant narrative that the crash was solely a US phenomenon and emphasizes the need for a more holistic understanding of historical events.",
     "query": "1920's stock market crash",
     "relev_events_list": [
         {
             "end date": "1929-10-29",
-            "location": "New York City, New York, USA",
-            "query": "1929 stock market crash New York City",
-            "relev_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRn-iy-hZNMm-s3nCvLm25OTubIISYSwCJ-nZHGgKoJUaipSHeZ5c1GAIRygko&s",
+            "location": "United States",
+            "query": "1929 stock market crash",
+            "relev_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyePvmfQ85c3YT-Oj3dFnY5i4__P7mS54S8I7kIxVr_siGWPbpi31gSABFjA&s",
             "start date": "1929-10-29",
-            "tag line": "1920's stock market crash (Black Tuesday)",
-            "x": -74.0072301,
-            "y": 40.7130466
+            "tag line": "Great Crash of 1929",
+            "x": -99.41461919,
+            "y": 39.398703156
         },
         {
-            "end date": "1939-03-01",
+            "end date": "1939-1939",
             "location": "United States",
             "query": "Great Depression",
             "relev_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwLWyA3K3PASNss_DW4czVWx_gPLcrEMkm9bBdp1brPOXtYCE2DUFtlLQQmH0&s",
-            "start date": "1929-10-29",
+            "start date": "1929-1929",
             "tag line": "Great Depression",
             "x": -99.41461919,
             "y": 39.398703156
         },
         {
-            "end date": "1939-03-01",
-            "location": "Worldwide",
+            "end date": "1939-1939",
+            "location": "Europe",
             "query": "Great Depression",
             "relev_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrA3uwCV8r5RhkVfnWZKfCiA4JnTaYlrL-H2DrBoNdVwDfi8YyESWFzE14ig&s",
-            "start date": "1929-10-29",
+            "start date": "1929-1929",
             "tag line": "Great Depression",
-            "x": -80.427512832362,
-            "y": 26.029568960298
+            "x": 9.14062,
+            "y": 48.69096
         },
         {
-            "end date": "1637-01-01",
-            "location": "Holland",
-            "query": "Tulip Mania Holland",
-            "relev_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAQ1FuLKCr3N7bAWVPgoeEigTlhdFiJ17heFsJ4TFmkhU689zyTlBYlM-K4wQ&s",
-            "start date": "1634-01-01",
-            "tag line": "Tulip Mania",
-            "x": 5.616126398,
-            "y": 52.249375293
+            "end date": "1939-1939",
+            "location": "Latin America",
+            "query": "Great Depression",
+            "relev_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfiycuuAN8DT39dkZvDmEw-6uQR4JHW6G0X6OskQ7q9HknkYMUaWx8Gwgm9kI&s",
+            "start date": "1929-1929",
+            "tag line": "Great Depression",
+            "x": -54.574794689278,
+            "y": -25.595937531589
         },
         {
-            "end date": "2001-03-10",
+            "end date": "1939-1939",
+            "location": "Asia",
+            "query": "Great Depression",
+            "relev_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYVQme-QKeVp4Hm5_6ihsqcokzPg6MikENVPS7iBg_XhYcusUnsoN2oAWsUuU&s",
+            "start date": "1929-1929",
+            "tag line": "Great Depression",
+            "x": 89.29688,
+            "y": 29.84064
+        },
+        {
+            "end date": "1945-1945",
+            "location": "Italy",
+            "query": "fascism 1930s",
+            "relev_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOs5MgbX-sZHxDsVsPVY0rJPYtEi2DERnt9KrKkuaWBhYxw8ewG6cy6ftcmGw&s",
+            "start date": "1930-1930",
+            "tag line": "Rise of Fascism",
+            "x": 12.83333,
+            "y": 42.83333
+        },
+        {
+            "end date": "1945-1945",
+            "location": "Germany",
+            "query": "fascism 1930s",
+            "relev_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMSrTCNR_JVolyoejiGybpaLTd8SXVJjQCdyc51LiTZm_BAmLOzgRqCIfsrI4&s",
+            "start date": "1930-1930",
+            "tag line": "Rise of Fascism",
+            "x": 10.392277932,
+            "y": 51.110631049
+        },
+        {
+            "end date": "1945-1945",
+            "location": "Spain",
+            "query": "fascism 1930s",
+            "relev_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwU46KVu2JjwICjbHuFFTIBSMf7RCiLbs97CqFO63_tOrSP7xkq3YFmb24bBs&s",
+            "start date": "1930-1930",
+            "tag line": "Rise of Fascism",
+            "x": -3.646063105,
+            "y": 40.22794966
+        },
+        {
+            "end date": "2008-2008",
             "location": "United States",
-            "query": "Dot-Com Bubble",
-            "relev_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7Tu6G41gxTCzELe2Q1HYVB2HpMLeIU_EKteqCCdrnSYo5eW_rik2E9hQ2sJE&s",
-            "start date": "1995-01-01",
-            "tag line": "Dot-Com Bubble",
+            "query": "2008 financial crisis",
+            "relev_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYZAmOoW5ugARJJmjvtAa41QWQYZUiIgKkVUzmhLd6jJDmUDJz3MSqibCVug&s",
+            "start date": "2008-2008",
+            "tag line": "2008 Financial Crisis",
             "x": -99.41461919,
             "y": 39.398703156
         },
         {
-            "end date": "1938-06-30",
+            "end date": "2008-2008",
+            "location": "Global",
+            "query": "2008 financial crisis",
+            "relev_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZ-O9jw2mQFyF2k4aSwQBzRpWaFTGuwG4MObCoEhOZNKPtcQicVA9y0kbOfA&s",
+            "start date": "2008-2008",
+            "tag line": "2008 Financial Crisis",
+            "x": -65.406988038819,
+            "y": -24.776889437498
+        },
+        {
+            "end date": "1929-1929",
+            "location": "Latin America",
+            "query": "Latin America economic challenges 1929",
+            "relev_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJGWezhyRMxfY8MLgDSLNzpR__aN1Ac_wNGyw_HRbe9T1Dp5_9uNVAhVhIeQ&s",
+            "start date": "1929-1929",
+            "tag line": "Latin American Economic Challenges",
+            "x": -54.574794689278,
+            "y": -25.595937531589
+        },
+        {
+            "end date": "1929-1929",
             "location": "United States",
-            "query": "New Deal programs",
-            "relev_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5GL14jOUoaiowaGhaxQCskcyztck1PSMSW9xU2um9rN8cmYtMajcbobQCqnE&s",
-            "start date": "1933-03-04",
-            "tag line": "New Deal programs",
+            "query": "Latin America economic challenges 1929",
+            "relev_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyLYCaAidoZDEjWQpqclfa28HVfM6mpnK6I_SuLp8E3vahbajnV2qYVdXk2VI&s",
+            "start date": "1929-1929",
+            "tag line": "Latin American Economic Challenges",
             "x": -99.41461919,
             "y": 39.398703156
         }

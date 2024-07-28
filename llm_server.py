@@ -31,7 +31,7 @@ if OPENAI_API_KEY:
     client = OpenAI(api_key=OPENAI_API_KEY)
 
 # SWITCH TO TURN ON / OFF MOCK DATA
-USE_MOCK_DATA = True or (OPENAI_API_KEY is None)
+USE_MOCK_DATA = False or (OPENAI_API_KEY is None)
 
 # we want to use this model
 OPENAI_MODEL = "gpt-3.5-turbo-0125"
@@ -99,13 +99,9 @@ Be specific about events and locations.
 
 Return a json list of event descriptions as described above.
 """
-    
-#     Format your answer in json like so:
-# {{
-#     "answer": <discussion regarding query>,
-#     "query": <search query that can be used to find relevant images to your answer *safe for work*> 
-#     "events": [relevant events]
-# }}
+
+#     If there are people or locations important to the paragraph, also include the described information for important events to them.    
+#     "corresponding current locations" [list of modern day locations of the locations in the locations array]
 
     relev_events_list = get_llm_response(relev_events_prompt, as_json=True)
 
@@ -119,12 +115,12 @@ def expand_compact_dict(combined_locs_data):
         if not isinstance(curDict, str):
             # print(curDict)
             relev_imgs_list = curDict["relev_events_images"]
-            locations_list = curDict["locations"]
+            locations_list = curDict["locations"] # ["corresponding current locations"]
             for i in range(len(locations_list)):
                 nl_loc = locations_list[i]
                 copiedDict = copy.deepcopy(curDict)
                 # add individual location
-                del copiedDict["locations"]
+                del copiedDict["locations"] # ["corresponding current locations"]
                 copiedDict["location"] = nl_loc
                 # add image from list of relev images based on index in locations list
                 del copiedDict["relev_events_images"]
@@ -145,6 +141,7 @@ def expand_compact_dict(combined_locs_data):
     # geocode in one request
     all_geocode_responses = sorted_batch_geocode(locations_list)
 
+    print(f"geocode responses: {all_geocode_responses}")
     # update x y 
     for i in range(len(individ_locs_dicts)):
         cur_dict = individ_locs_dicts[i]
@@ -168,11 +165,12 @@ def get_relev_img_urls(query):
     images = soup.find_all('img')
 
     img_urls = []
+    # filter for only valid links
     for img in images:
         # print(img)
         cur_src_url = img['src']
         if cur_src_url.startswith("https://"):
-            img_urls.append(img['src'])
+            img_urls.append(cur_src_url)
 
     # return top images
     return img_urls[:MAX_IMGS]
