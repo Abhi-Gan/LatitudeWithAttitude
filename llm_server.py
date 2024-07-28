@@ -221,12 +221,14 @@ def historyQuery():
 
         if 'vietnam1' in query_str:
             fname = './demo_responses/vietnam_war1.json'
-        elif 'vietnam2' in query_str:
+        elif 'vietnam2' in query_str or 'the vietnam war' in query_str:
             fname = './demo_responses/vietnam_war2.json'
         elif 'africa1' in query_str:
             fname = './demo_responses/africa_decolonization1.json'
-        elif 'africa2' in query_str:
+        elif 'africa2' in query_str or 'Decolonization movements in Africa, Asia, and the Middle East' in query_str:
             fname = './demo_responses/africa_decolonization2.json'
+        elif 'goat' in query_str or 'who is the GOAT of basketball?' in query_str:
+            fname = './demo_responses/goat1.json'
         
         elif '1' in query_str:
             fname = './example_responses/example_response1_abomb.json'

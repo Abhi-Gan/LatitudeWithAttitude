@@ -1,0 +1,88 @@
+{
+    "paragraph_response": "The debate over who is the Greatest of All Time (GOAT) in basketball is a topic that has sparked intense discussions and comparisons across generations. While many argue for players like Michael Jordan, LeBron James, or Kobe Bryant, it is important to contextualize this debate within a broader global history of basketball and sports.\n\nBasketball, as a sport, has transcended borders and has become a global phenomenon with fans and players from all around the world. The NBA, as the premier basketball league, has attracted talent from various countries, leading to a diverse and competitive landscape. This globalization of basketball has also led to the emergence of superstars from different parts of the world, challenging the traditional narrative of American dominance in the sport.\n\nDrawing parallels to other events across space and time, we can see how the evolution of basketball mirrors the larger trends of globalization and interconnectedness. Just as basketball has become a global sport, so too have other cultural, economic, and political phenomena crossed borders and boundaries, shaping our world in profound ways.\n\nTaking a transnational approach to the GOAT debate, we can see how players from different countries and backgrounds have left their mark on the sport. Players like Dirk Nowitzki from Germany, Yao Ming from China, and Giannis Antetokounmpo from Greece have all made significant contributions to the game, challenging the traditional notion of what it means to be a basketball superstar.\n\nIn arguing a central theme that contends or slightly differs from the dominant narrative, we can challenge the idea that there can only be one GOAT in basketball. Instead, we can appreciate the unique talents and skills that each player brings to the game, recognizing that greatness comes in many forms and can be found in players from all corners of the globe.\n\nIn conclusion, the debate over the GOAT of basketball is not just a question of individual talent or achievements but also a reflection of the broader global trends that shape our world. By taking a transnational approach and making connections to other geographical places and groups, we can appreciate the diversity and richness of the sport and celebrate the many players who have left their mark on basketball history.",
+    "query": "who is the GOAT of basketball?",
+    "relev_events_list": [
+        {
+            "end date": "2003-04-16",
+            "location": "Chicago, Illinois",
+            "query": "Michael Jordan Chicago Bulls",
+            "relev_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjkyENkQ5nUk4m-G5tH99ffA4Qtv7h96lAjhhqx8XB8Ac3IXkyoBrSbifsFQ&s",
+            "start date": "1984-10-26",
+            "tag line": "Michael Jordan's dominance in the NBA",
+            "x": -87.632398,
+            "y": 41.883229
+        },
+        {
+            "end date": "Present",
+            "location": "Cleveland, Ohio",
+            "query": "LeBron James Cleveland Cavaliers",
+            "relev_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYOVe3nJXEuqtBMX4HRzMUvNPXXwl7-NW0yZVeZI4-e_jxtTDaGEkLSxc-pvI&s",
+            "start date": "2003-10-29",
+            "tag line": "LeBron James' impact on the Cleveland Cavaliers and Miami Heat",
+            "x": -81.6914575,
+            "y": 41.5051414
+        },
+        {
+            "end date": "Present",
+            "location": "Miami, Florida",
+            "query": "LeBron James Cleveland Cavaliers",
+            "relev_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTO9zUjlgE4vvW1Y17ga_EaxK3uqKqUHvYGnPGBlTfCnqAZ7Ueml1xiT3Qhbg&s",
+            "start date": "2003-10-29",
+            "tag line": "LeBron James' impact on the Cleveland Cavaliers and Miami Heat",
+            "x": -80.194702,
+            "y": 25.775084
+        },
+        {
+            "end date": "2016-04-13",
+            "location": "Los Angeles, California",
+            "query": "Kobe Bryant Los Angeles Lakers",
+            "relev_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRO1CNfaLaRM9x0NqOYcFV1U5Gr8_4KRUKppXZhTRAdubupsRiJ4XtAPdU7nA&s",
+            "start date": "1996-11-03",
+            "tag line": "Kobe Bryant's legacy with the Los Angeles Lakers",
+            "x": -118.243344,
+            "y": 34.052238
+        },
+        {
+            "end date": "2019-04-10",
+            "location": "Dallas, Texas",
+            "query": "Dirk Nowitzki Dallas Mavericks",
+            "relev_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWqwdHeBssvC48I3igDbXJo08LhulrQ88wYQjpwoQKZHmzM3hPimEn0G3GyAM&s",
+            "start date": "1998-02-05",
+            "tag line": "Dirk Nowitzki's impact on the Dallas Mavericks",
+            "x": -96.7962148,
+            "y": 32.7779765
+        },
+        {
+            "end date": "2011-07-01",
+            "location": "Shanghai, China",
+            "query": "Yao Ming NBA",
+            "relev_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9QP02p7JM6fytRnIzr-HvccPbQ6cd_N2a0plZvOgXMloIyvo2VJfzjvLS2Q&s",
+            "start date": "2002-10-30",
+            "tag line": "Yao Ming's influence in the NBA as a Chinese player",
+            "x": 121.45806,
+            "y": 31.22222
+        },
+        {
+            "end date": "Present",
+            "location": "Milwaukee, Wisconsin",
+            "query": "Giannis Antetokounmpo Milwaukee Bucks",
+            "relev_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9aWuribG_N8vUk5PYFIo6XbLIKuu9qxOHtibnyVkAApigg-ML4-GOst53joA&s",
+            "start date": "2013-07-01",
+            "tag line": "Giannis Antetokounmpo's rise to stardom with the Milwaukee Bucks",
+            "x": -87.909421,
+            "y": 43.041072
+        }
+    ],
+    "relev_images": [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd1j3j-YwdZRAMiO4VIXU7MfZMM6ZVON3iogRELKUihJkbVjbT16OyWMAFnQ&s",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS53ySJTNCjcryq2LB395byhGAQtP7re9k0_5ZzlBbnswWPPpfrWqs9x9pygw&s",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhv_vcMQJAJw29LPi4ye0JZkf9-O0C-mf9OzQ_KulhXPvMh9lL6PwZPM6Fdw&s",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvKVgL2YTA-6Cy-op2usBYj6OBYsaotuWVBp0wvjxH3RX106k8yfkHq8GvgQ&s",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtFVs5dh3Vz_1BQOqQsoa85N8eE8_khkKVkaOBkNEzXgsxG9VhFASjicJJJNA&s",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPNfgRGh2zhhAhShaONiFswWhP1JJ-FIx9PA-zqqNrQjwMFNv_lLgpoo4b3WI&s",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKqzfLA53eBNBx9XTWR46B68uUYIi7Jwm8aybEyiJFxHYD6pr-zxICYewAcA&s",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNsKcs9J0l0Mvk52CIIlOBMV4iy89b1xd0b4KHTGaTPaQkdHj5ui0GgQAWsaQ&s",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjZuLfDAY8T5dDf471czhwFuQhR46zZZPhh4_J3TQ8SJfL5MgoPPG87eVCKA&s",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRv05AS97_zdoDVlsVHViAeu22Se0iFS-B-SfoBbim5g3GhuzD1BosTchk5WA&s"
+    ]
+}
