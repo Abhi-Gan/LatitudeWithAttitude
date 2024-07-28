@@ -31,7 +31,9 @@ if OPENAI_API_KEY:
     client = OpenAI(api_key=OPENAI_API_KEY)
 
 # SWITCH TO TURN ON / OFF MOCK DATA
-USE_MOCK_DATA = False or (OPENAI_API_KEY is None)
+USE_MOCK_DATA = True or (OPENAI_API_KEY is None)
+# SWITCH TO TURN ON IMAGE SCRAPING
+SCRAPE_IMAGES = False
 
 # we want to use this model
 OPENAI_MODEL = "gpt-3.5-turbo-0125"
@@ -124,7 +126,7 @@ def expand_compact_dict(combined_locs_data):
                 copiedDict["location"] = nl_loc
                 # add image from list of relev images based on index in locations list
                 del copiedDict["relev_events_images"]
-                img_idx = i % len(locations_list)
+                img_idx = i % len(relev_imgs_list)
                 copiedDict["relev_image"] = relev_imgs_list[img_idx]
                 # x_y_loc = geocode(nl_loc, max_locations=1, out_fields="location")[0]['location']
                 # copiedDict['x_loc'] = x_y_loc['x']
@@ -141,7 +143,6 @@ def expand_compact_dict(combined_locs_data):
     # geocode in one request
     all_geocode_responses = sorted_batch_geocode(locations_list)
 
-    print(f"geocode responses: {all_geocode_responses}")
     # update x y 
     for i in range(len(individ_locs_dicts)):
         cur_dict = individ_locs_dicts[i]
@@ -152,28 +153,34 @@ def expand_compact_dict(combined_locs_data):
         cur_dict['x'] = cur_loc['x']
         cur_dict['y'] = cur_loc['y']
 
+        # with geocode info
+        print(f'Geocoded Event: {cur_dict["tag line"]}, {cur_dict["location"]}->{cur_loc}')
+
     return individ_locs_dicts
 
 
 def get_relev_img_urls(query):
-    url = f"https://www.google.com/search?q={query}&tbm=isch"
-    session = requests.Session()
-    session.cookies.clear()
-    response = requests.get(url=url)
-    soup = BeautifulSoup(response.content, 'html.parser')
+    if SCRAPE_IMAGES:
+        url = f"https://www.google.com/search?q={query}&tbm=isch"
+        session = requests.Session()
+        session.cookies.clear()
+        response = requests.get(url=url)
+        soup = BeautifulSoup(response.content, 'html.parser')
 
-    images = soup.find_all('img')
+        images = soup.find_all('img')
 
-    img_urls = []
-    # filter for only valid links
-    for img in images:
-        # print(img)
-        cur_src_url = img['src']
-        if cur_src_url.startswith("https://"):
-            img_urls.append(cur_src_url)
+        img_urls = []
+        # filter for only valid links
+        for img in images:
+            # print(img)
+            cur_src_url = img['src']
+            if cur_src_url.startswith("https://"):
+                img_urls.append(cur_src_url)
 
-    # return top images
-    return img_urls[:MAX_IMGS]
+        # return top images
+        return img_urls[:MAX_IMGS]
+    else:
+        return ["https://www.historyhit.com/app/uploads/2020/07/US-forces-battle-of-midway-1.jpg"]
 
 def get_overall_info(query):
     paragraph_response = discuss_topic(query)

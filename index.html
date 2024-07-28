@@ -332,12 +332,46 @@
                 })
                 .then((data) => {
                   console.log("Success:", data);
-                  // Display paragraph text
-                  const infoPanel = document.getElementById("imagePanel");
-                  infoPanel.innerText = data["paragraph_response"];
+                  // Display paragraph text response w images
+                  const infoPanel = document.getElementById('imagePanel');
+                  // infoPanel.innerText = data["paragraph_response"];
+                  // Remove existing content
+                  infoPanel.innerHTML = "";
+                  const container = document.createElement("div");
+                  const paragraphList = data['paragraph_response'].split('\n\n');
 
-                  const eventsList = data["relev_events_list"];
+                  // create list from 1 of this, all the other points, and then this
+                  const imagesList = data['relev_images'];
+                  const eventsList = data['relev_events_list'];
                   console.log(eventsList);
+                  // data['relev_events_list']
+                  eventsImages = [];
+                  eventsList.forEach((event) => {
+                    eventsImages.push(event["relev_image"]);
+                  })
+                  paragraphImages = [
+                    // ...imagesList.slice(0, 1),
+                    ...eventsImages,
+                    ...imagesList.slice(1)
+                  ];
+
+                  for (let i = 0; i < paragraphList.length; i++) {
+                    // Create a paragraph element for the current paragraph
+                    const p = document.createElement("p");
+                    p.textContent = paragraphList[i];
+                    container.appendChild(p);
+
+                    // Create an image element for the corresponding image
+                    if (i < paragraphImages.length) {
+                      const img = document.createElement("img");
+                      img.src = paragraphImages[i];
+                      img.style.width = "100%";
+                      img.style.margin = "0 auto";
+                      container.appendChild(img);
+                    }
+                  }
+
+                  infoPanel.appendChild(container);
 
                   // Clear existing graphics
                   // graphicsLayer.removeAll();
