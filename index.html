@@ -240,7 +240,11 @@
           ];
           let colorIndex = 0;
 
-          function addPoint(longitude, latitude, title, url) {
+          function addPoint(longitude, latitude, title, url, fullAttrObj={}) {
+            const startDate = fullAttrObj.hasOwnProperty("start date") ? fullAttrObj["start date"] : '?';
+            const endDate = fullAttrObj.hasOwnProperty("end date") ? fullAttrObj["end date"] : '?';
+            const location = fullAttrObj.hasOwnProperty("location") ? fullAttrObj["location"] : '';
+
             console.log(`url: ${url}`);
             const point = new Point({
               longitude: longitude,
@@ -250,9 +254,11 @@
             const popupTemplate = new PopupTemplate({
               title: title,
               content: `
-              <img src="${url}"$>
+              <img src="${url}" style="width: 100%; height: auto; align-items: center; margin: 0 auto;"/>
               <br>
-              [${latitude}, ${longitude}]`,
+              ${location} 
+              <br>
+              ${startDate} to ${endDate}`,
             });
 
             const markerSymbol = {
@@ -383,7 +389,8 @@
                       event["x"],
                       event["y"],
                       event["tag line"],
-                      event["relev_image"]
+                      event["relev_image"],
+                      event
                     );
                   });
 
