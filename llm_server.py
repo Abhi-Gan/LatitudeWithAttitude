@@ -36,7 +36,7 @@ if OPENAI_API_KEY:
 # SWITCH TO TURN ON / OFF MOCK DATA
 USE_MOCK_DATA = True or (OPENAI_API_KEY is None)
 # SWITCH TO TURN ON IMAGE SCRAPING
-SCRAPE_IMAGES = False
+SCRAPE_IMAGES = True
 
 # we want to use this model
 OPENAI_MODEL = "gpt-3.5-turbo-0125"
@@ -216,9 +216,19 @@ def historyQuery():
     query_str = data['query']
     # check if I have the openAI api
     if USE_MOCK_DATA:
-        time.sleep(2)
+        time.sleep(1)
         fname = './example_responses/example_response1_abomb.json'
-        if '1' in query_str:
+
+        if 'vietnam1' in query_str:
+            fname = './demo_responses/vietnam_war1.json'
+        elif 'vietnam2' in query_str:
+            fname = './demo_responses/vietnam_war2.json'
+        elif 'africa1' in query_str:
+            fname = './demo_responses/africa_decolonization1.json'
+        elif 'africa2' in query_str:
+            fname = './demo_responses/africa_decolonization2.json'
+        
+        elif '1' in query_str:
             fname = './example_responses/example_response1_abomb.json'
         elif '2' in query_str:
             fname = './example_responses/example_response2_stock.json'
