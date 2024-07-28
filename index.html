@@ -68,6 +68,8 @@
         overflow-y: auto;
         border-right: 2px solid #000000;
         border-top: 2px solid #000000;
+        resize: horizontal; /* Allow horizontal resizing */
+        position: relative; /* Required for the resize handle */
       }
       #infoPanel {
         flex: 1;
@@ -84,6 +86,10 @@
         margin-bottom: 20px;
         border: 2px solid #000000;
       }
+      h2 {
+        text-transform: capitalize;
+      }
+
       #inputPanel textarea {
         width: 100%;
         height: 80px;
@@ -111,18 +117,36 @@
         flex: 1;
         padding: 20px;
         max-height: 1000px;
-        overflow-y: auto;
+        overflow: auto; /* Allow scrolling if content overflows */
         box-sizing: border-box;
         background-color: #2a351f;
         color: white;
         border: 2px solid #000000;
+        resize: horizontal; /* Allow horizontal resizing */
+        position: relative; /* Required for the resize handle */
+        right: 0; /* Position the panel to the left */
+        /* cursor: ew-resize; Cursor for horizontal resizing */
       }
+
       #imagePanel img {
         max-width: 100%;
         max-height: 100%;
         margin-bottom: 10px; /* Space between image and text */
         border-radius: 8px;
       }
+
+      /* Optional: Style for the resize handle */
+      #imagePanel::before {
+        content: "";
+        display: block;
+        width: 10px;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        cursor: ew-resize; /* Cursor for horizontal resizing */
+      }
+
       #placeholderTop,
       #placeholderBottom {
         margin-top: 10px; /* Adjust as needed */
@@ -134,7 +158,7 @@
         padding: 10px;
         background-color: #f9f9f9;
         border-radius: 4px;
-        max-height: 200px;
+        max-height: 600px;
         overflow-y: auto;
       }
       #queryList ul {
@@ -186,7 +210,6 @@
       <source src="opening.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
-
     <script>
       require([
         "esri/Map",
@@ -213,9 +236,16 @@
       ) => {
         const graphicsLayer = new GraphicsLayer();
         const queries = [];
+        const satelliteBasemap = new Basemap({
+          baseLayers: [
+            new VectorTileLayer({
+              url: "https://cdn.arcgis.com/sharing/rest/content/items/c3bbfd64cb6a4718a85c1072063824e1/resources/styles/root.json",
+            }),
+          ],
+        });
 
         const map = new Map({
-          basemap: "satellite",
+          basemap: "hybrid",
           layers: [graphicsLayer],
         });
 
@@ -240,10 +270,31 @@
           // Create the BasemapToggle widget with the custom basemap
           const basemapToggle = new BasemapToggle({
             view: view,
-            nextBasemap: customBasemap,
+            nextBasemap: satelliteBasemap,
           });
 
           view.ui.add(basemapToggle, "top-left");
+          const imagePanel = document.getElementById("imagePanel");
+
+          imagePanel.addEventListener("mousedown", (e) => {
+            if (e.target === imagePanel || e.target.parentNode === imagePanel) {
+              imagePanel.style.userSelect = "none";
+              imagePanel.style.cursor = "ew-resize";
+              let startX = e.clientX;
+              let startWidth = imagePanel.offsetWidth;
+
+              document.addEventListener("mousemove", (e) => {
+                imagePanel.style.width = `${
+                  startWidth + (e.clientX - startX)
+                }px`;
+              });
+
+              document.addEventListener("mouseup", () => {
+                imagePanel.style.userSelect = "auto";
+                imagePanel.style.cursor = "auto";
+              });
+            }
+          });
 
           const colors = [
             [226, 119, 40], // Orange
@@ -367,6 +418,17 @@
                   const paragraphList =
                     data["paragraph_response"].split("\n\n");
 
+                  const queryTitle = document.createElement("h2");
+
+                  console.log(queryTitle);
+                  queryTitle.textContent = data["query"];
+                  console.log(queryTitle);
+
+                  // queryTitle.style.fontSize = "2em";
+
+                  queryTitle.style.marginBottom = "20px";
+                  container.appendChild(queryTitle);
+
                   // create list from 1 of this, all the other points, and then this
                   const imagesList = data["relev_images"];
                   const eventsList = data["relev_events_list"];
@@ -381,7 +443,6 @@
                     ...eventsImages,
                     ...imagesList.slice(1),
                   ];
-
                   for (let i = 0; i < paragraphList.length; i++) {
                     // Create a paragraph element for the current paragraph
                     const p = document.createElement("p");
@@ -443,6 +504,7 @@
             .addEventListener("click", () => {
               graphicsLayer.removeAll();
               document.getElementById("userInput").value = "";
+              imagePanel.innerHTML = "";
               queries.length = 0; // Clear the queries array
               updateQueryList(); // Update the query list display'
             });
@@ -491,7 +553,11 @@
   <body>
     <div id="mainContent">
       <div id="leftPanel">
-        <img src="Wordmap-Logo-02.png" alt="Logo" style="margin-bottom: 20px" />
+        <img
+          src="Wordmap-Logo-02.png"
+          alt="Logo"
+          style="margin-bottom: 20px; margin-top: 5px"
+        />
         <br />
         <div id="infoPanel">
           <div id="inputPanel">
@@ -525,6 +591,7 @@
       <div id="viewDiv"></div>
 
       <div id="imagePanel">
+        <h2>Example: Battle of Midway</h2>
         <div id="placeholderTop">
           <p>
             The Battle of Midway, fought from June 4-7, 1942, was a pivotal
