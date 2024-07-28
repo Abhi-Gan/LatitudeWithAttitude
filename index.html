@@ -110,7 +110,7 @@
         align-items: left;
         flex: 1;
         padding: 20px;
-        max-height: 900px;
+        max-height: 1000px;
         overflow-y: auto;
         box-sizing: border-box;
         background-color: #2a351f;
@@ -254,10 +254,16 @@
           ];
           let colorIndex = 0;
 
-          function addPoint(longitude, latitude, title, url, fullAttrObj={}) {
-            const startDate = fullAttrObj.hasOwnProperty("start date") ? fullAttrObj["start date"] : '?';
-            const endDate = fullAttrObj.hasOwnProperty("end date") ? fullAttrObj["end date"] : '?';
-            const location = fullAttrObj.hasOwnProperty("location") ? fullAttrObj["location"] : '';
+          function addPoint(longitude, latitude, title, url, fullAttrObj = {}) {
+            const startDate = fullAttrObj.hasOwnProperty("start date")
+              ? fullAttrObj["start date"]
+              : "?";
+            const endDate = fullAttrObj.hasOwnProperty("end date")
+              ? fullAttrObj["end date"]
+              : "?";
+            const location = fullAttrObj.hasOwnProperty("location")
+              ? fullAttrObj["location"]
+              : "";
 
             console.log(`url: ${url}`);
             const point = new Point({
@@ -279,8 +285,8 @@
               type: "simple-marker",
               color: colors[colorIndex], // Cycle through colors
               outline: {
-                color: [255, 255, 255], // White
-                width: 2,
+                color: [0, 0, 0], // White
+                width: 1,
               },
             };
 
@@ -436,12 +442,12 @@
             .getElementById("clearButton")
             .addEventListener("click", () => {
               graphicsLayer.removeAll();
-              document.getElementById("userInput").innerText = "";
+              document.getElementById("userInput").value = "";
               queries.length = 0; // Clear the queries array
-              updateQueryList(); // Update the query list display
+              updateQueryList(); // Update the query list display'
             });
 
-          view.on("click ", (event) => {
+          view.on("pointer-move", (event) => {
             view.hitTest(event).then((response) => {
               const results = response.results;
               if (results.length > 0 && results[0].graphic) {
@@ -459,6 +465,21 @@
               }
             });
           });
+          view.on("double-click", (event) => {
+            view.hitTest(event).then((response) => {
+              const results = response.results;
+              if (results.length > 0 && results[0].graphic) {
+                const graphic = results[0].graphic;
+                const title = graphic.popupTemplate.title;
+
+                // Set the title as the new query and submit it
+                document.getElementById("userInput").value = title;
+                document.getElementById("submitButton").click();
+                document.getElementById("userInput").value = "";
+              }
+            });
+          });
+
           setTimeout(() => {
             document.getElementById("introVideo").style.display = "none";
           }, 6000);
