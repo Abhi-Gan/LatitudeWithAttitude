@@ -36,12 +36,25 @@
         flex-direction: column;
         margin: 0;
         padding: 0;
-        font-family: Arial, sans-serif;
+        font-family: "Avenir Next";
       }
-
+      .button-container {
+        display: flex; /* Make the container a flexbox */
+      }
+      .custom-button {
+        --calcite-ui-brand: #67b826; /* Custom color */
+        margin-left: auto; /* Push the button to the right */
+        --calcite-ui-brand-hover: #5ea123; /* Custom hover color */
+        --calcite-ui-brand-press: #558f1f; /* Custom press color */
+      }
+      .custom-button1 {
+        --calcite-ui-brand: #67b826; /* Custom color */
+        --calcite-ui-brand-hover: #5ea123; /* Custom hover color */
+        --calcite-ui-brand-press: #558f1f; /* Custom press color */
+      }
       #topBar {
         width: 100%;
-        height: 60px;
+        height: 100px;
         background-color: #2a351f;
         display: flex;
         align-items: center;
@@ -68,8 +81,10 @@
         padding: 10px;
         background-color: #2a351f;
         color: white;
+        max-height: 700px;
         overflow-y: auto;
         border-right: 2px solid #000000;
+        border-top: 2px solid #000000;
       }
 
       #infoPanel {
@@ -82,7 +97,7 @@
       #inputPanel {
         width: 90%;
         padding: 15px;
-        background-color: #247209;
+        background-color: #fafff3;
         border-radius: 8px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         margin-bottom: 20px;
@@ -100,7 +115,7 @@
       }
 
       #queryText {
-        background-color: #e0f7fa;
+        /* background-color: #e0f7fa; */
         padding: 10px;
         border-radius: 4px;
         margin-top: 10px;
@@ -109,7 +124,8 @@
       #viewDiv {
         flex: 2;
         background-color: #f0f0f0;
-        /* border: 4px solid #67b826; */
+        max-height: 700px;
+        /* border: 1px solid #67b826; */
       }
 
       #imagePanel {
@@ -119,6 +135,8 @@
         align-items: left;
         flex: 1;
         padding: 20px;
+        max-height: 700px;
+
         overflow-y: auto;
         box-sizing: border-box;
         background-color: #2a351f;
@@ -164,6 +182,7 @@
         padding: 5px;
         background-color: #e0fae5;
         border-radius: 4px;
+        color: black;
       }
     </style>
     <script>
@@ -340,7 +359,7 @@
                 });
 
               // Clear the input box and update the query text
-              document.getElementById("queryText").innerText = `${userInput}`;
+              // document.getElementById("queryText").innerText = `${userInput}`;
               document.getElementById("userInput").value = "";
             });
 
@@ -387,21 +406,28 @@
           <div id="inputPanel">
             <textarea
               id="userInput"
-              placeholder="Enter query: "
+              placeholder="I want to learn about... "
               rows="5"
             ></textarea>
-            <calcite-button id="submitButton" appearance="solid" color="Green"
-              >Submit</calcite-button
-            >
-            <calcite-button id="clearButton" appearance="outline" color="Green"
-              >Clear All Points</calcite-button
-            >
-            <p id="queryText"></p>
+            <div class="button-container">
+              <calcite-button
+                id="submitButton"
+                appearance="solid"
+                class="custom-button"
+                >Submit</calcite-button
+              >
+            </div>
           </div>
           <p><strong>Previous Queries:</strong></p>
           <div id="queryList">
             <ul></ul>
           </div>
+          <calcite-button
+            id="clearButton"
+            appearance="solid"
+            class="custom-button1"
+            >Clear All Points</calcite-button
+          >
         </div>
       </div>
 
